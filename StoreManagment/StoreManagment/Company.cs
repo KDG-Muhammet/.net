@@ -2,10 +2,10 @@
 
 public class Company
 {
-    private string Name;
-    private Game Games;
-    private string Address;
-    private DateTime YearFounded;
+    public string Name { get; set; }
+    private Game Games{ get; set; }
+    private string Address{ get; set; }
+    private DateTime YearFounded{ get; set; }
     
     public string ToString()
     {
