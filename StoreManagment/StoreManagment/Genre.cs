@@ -1,9 +1,10 @@
 ﻿namespace StoreManagment;
 
-public enum Genre
+public enum Genre : byte
 {
-    actionGenre = 1 ,
-    adventureGenre
+    Action = 1 ,
+    Adventure,
+    Horror
     
     
 

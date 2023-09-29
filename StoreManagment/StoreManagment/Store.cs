@@ -2,21 +2,21 @@
 
 public class Store
 {
-    private string Name{ get; set; }
-    private Game Games{ get; set; }
+    public string Name{ get; set; }
+    public List<Game> Games{ get; set; }
     private string Address{ get; set; }
-    private TimeOnly OpeningHour{ get; set; }
+    public TimeOnly OpeningHour{ get; set; }
 
-    public Store(string name, Game games, string address, TimeOnly openingHour)
+    public Store(string name, string address, TimeOnly openingHour) 
     {
         Name = name;
-        Games = games;
+        Games = new List<Game>();
         Address = address;
         OpeningHour = openingHour;
     }
-
-    public string ToString()
+ 
+    public override string ToString()
     {
-        return Name + Games + Address + OpeningHour;
+        return string.Format("Name Store: {0,-20} address: {1,-20} OpeningHour: {2}", Name, Address, OpeningHour);
     }
 }

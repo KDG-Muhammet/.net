@@ -1,39 +1,45 @@
 ﻿using System.Net.Sockets;
 
 namespace StoreManagment;
+
 public class ConsoleUi
 {
-    
-    
-    private List<Game> Games = new List<Game>();
-    private List<Store> Stores = new List<Store>();
+    private List<Game> GamesList { get; set; } = new List<Game>();
+    private List<Store> StoresList { get; set; } = new List<Store>();
 
     public void Seed()
     {
-        Game game1 = new Game("Assassin's Creed Valhalla", 59.99, Genre.actionGenre, "ubisoft", "steam",
-            new DateTime(2022, 3, 8, 10, 0, 0), 9);
-        Game game2 = new Game("FIFA 21", 49.99, Genre.actionGenre, "ea", "steam", new DateTime(2021, 9, 10, 10, 0, 0),
-            8);
-        Game game3 = new Game("Cyberpunk 2077", 69.99, Genre.actionGenre, "cdProjektRed", "epicGamesStore",
-            new DateTime(2020, 5, 7, 10, 0, 0), 7);
-        Game game4 = new Game("The Witcher 3: Wild Hunt", 39.99, Genre.adventureGenre, "cdProjektRed", "steam",
-            new DateTime(2023, 7, 13, 10, 0, 0), 9);
+        Game game1 = new Game("Assassin's Creed Valhalla", 59.99, Genre.Action, new DateTime(2022, 3, 8, 10, 0, 0), 9);
+        Game game2 = new Game("FIFA 21", 49.99, Genre.Action, new DateTime(2021, 9, 10, 10, 0, 0), 8);
+        Game game3 = new Game("Cyberpunk 2077", 69.99, Genre.Adventure,new DateTime(2020, 5, 7, 10, 0, 0), 7);
+        Game game4 = new Game("The Witcher 3: Wild Hunt", 39.99, Genre.Horror, new DateTime(2023, 7, 13, 10, 0, 0), 9);
 
-        Store store1 = new Store("Steam Store", game1, "123 Main Street", new TimeOnly(10, 0, 0));
-        Store store2 = new Store("Epic Games Store", game2, "456 Elm Street", new TimeOnly(11, 0, 0));
-        Store store3 = new Store("Ubisoft Store", game3, "789 Oak Street", new TimeOnly( 12, 0, 0));
-        Store store4 = new Store("GOG Store", game4, "101 Pine Street", new TimeOnly( 13, 0, 0));
- 
-        Games.AddRange(new[] { game1, game2, game3, game4 });
-        Stores.AddRange(new[] { store1, store2, store3, store4 });
-
+        Store store1 = new Store("Steam Store", "123 Main Street", new TimeOnly(10, 0, 0));
+        Store store2 = new Store("Epic Games Store", "456 Elm Street", new TimeOnly(11, 0, 0));
+        Store store3 = new Store("Ubisoft Store", "789 Oak Street", new TimeOnly(12, 0, 0));
+        Store store4 = new Store("GOG Store", "101 Pine Street", new TimeOnly(13, 0, 0));
+        
+        store1.Games.Add(game1);
+        store1.Games.Add(game2);
+        store2.Games.Add(game2);
+        store3.Games.Add(game3);
+        store4.Games.Add(game4);
+        
+        game1.Stores.Add(store1);
+        game1.Stores.Add(store2);
+        game3.Stores.Add(store1);
+        game4.Stores.Add(store2);
         
         
-        //store1.Games.add(game1);
-        //om de objecten te koppelen via veel op veel relatie
+
+        GamesList.AddRange(new[] { game1, game2, game3, game4 });
+        StoresList.AddRange(new[] { store1, store2, store3, store4 });
     }
+
+
     public void Run()
     {
+        Seed();
         bool stoppen = true;
         while (stoppen)
         {
@@ -46,75 +52,88 @@ public class ConsoleUi
                 "3) Show all Stores\n" +
                 "4) Show stores with Game and/or opening hour\n" +
                 "Choice (0-4):\n");
-            int  choice = Console.Read();
-         
+            string choice = Console.ReadLine();
 
-            switch (choice) 
+
+            switch (choice)
             {
-                case 0 : stoppen = false;
+                case "0":
+                    stoppen = false;
                     break;
-                case 1 : ShowGames();
+                case "1":
+                    ShowGames();
                     break;
-                case 2 : ShowGamesBasedOnGenre();
+                case "2":
+                    ShowGamesBasedOnGenre();
                     break;
-                case 3: ShowStores();
+                case "3":
+                    ShowStores();
                     break;
-                case 4 : ShowStoresBasedOnGameName();
+                case "4":
+                    ShowStoresBasedOnGameName();
                     break;
             }
         }
     }
+
 
     public void ShowGames()
     {
-        foreach (Game game in Games)
+        foreach (Game game in GamesList)
         {
-            Console.WriteLine(game);
+            Console.WriteLine(game.ToString());
         }
     }
-    
+
+
     public void ShowGamesBasedOnGenre()
     {
-      Console.WriteLine("give genre: 1=actionGenre, 2=adventureGenre");
-      int genre = Console.Read();
-      foreach (Game game in Games)
-      {
-          if (Genre.actionGenre.Equals(genre)) 
-          {
-              Console.WriteLine(game);
-          } else if (Genre.adventureGenre.Equals(genre))
-          {
-              Console.WriteLine(game);
-          }
-      }
+        Console.WriteLine("give genre: 1=Action, 2=Adventure, 3=Horror");
+        int genre = Convert.ToInt16(Console.ReadLine());
+        foreach (Game game in GamesList)
+        {
+            switch (genre)
+            {
+                case 1:
+                    if (game.Genre.Equals(Genre.Action)) Console.WriteLine(game.ToString());
+                    
+                    break;
+                case 2:if (game.Genre.Equals(Genre.Adventure)) Console.WriteLine(game.ToString());
+
+                    break;
+                case 3: if (game.Genre.Equals(Genre.Horror)) Console.WriteLine(game.ToString());
+                    break;
+            }
+            
+            
+        }
     }
+
     public void ShowStores()
     {
-        foreach (Store store in Stores)
+        foreach (Store store in StoresList)
         {
-            Console.WriteLine(store);
+            Console.WriteLine(store.ToString());
         }
-        
-        
     }
-    
+
+
     public void ShowStoresBasedOnGameName()
     {
-        Console.WriteLine("enter the name of a game or leave empty:");
+        Console.WriteLine("Enter the name of a game or leave blank:");
         string game = Console.ReadLine();
-        foreach (Store store in Stores)
+        Console.WriteLine("Enter a hour or leave blank: ");
+        int hour = Convert.ToInt16(Console.ReadLine());
+        foreach (Store store in StoresList )
         {
-            if (store.Equals(game))
-            { 
-                Console.WriteLine(store);
+            foreach (Game storeGame in store.Games)
+            {
+                if ((storeGame.Name.Equals(game)|| string.IsNullOrWhiteSpace(game)) && (store.OpeningHour.Hour.Equals(hour) || hour == -1))
+                {
+                    Console.WriteLine(store.Name + " " + store.OpeningHour);
+                } 
             }
         }
-        
-        
     }
-    
-    
-    
-    
     
 }

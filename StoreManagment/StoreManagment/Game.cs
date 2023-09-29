@@ -2,29 +2,27 @@
 
 public class Game
 {
-    private string Name{ get; set; }
+    public string Name{ get; set; }
     private double? Price{ get; set; } 
-    private Genre Genre{ get; set; }
-    private string Company{ get; set; }
-    private string Stores{ get; set; }
+    public Genre Genre{ get; set; }
+    public Company Company{ get; set; }
+    public List<Store> Stores{ get; set; }
     private DateTime YearReleased{ get; set; }
     private int Rating{ get; set; }
 
-    public Game(string name, double? price, Genre genre, string company, string stores, DateTime yearReleased, int rating)
+    public Game(string name, double? price, Genre genre, DateTime yearReleased, int rating)
     {
         Name = name;
         Price = price;
         Genre = genre;
-        Company = company;
-        Stores = stores;
+        Stores = new List<Store>();
         YearReleased = yearReleased;
         Rating = rating;
     }
 
 
-    public string ToString()
+    public override string ToString()
     {
-        return Name + Price + Genre + Company + Stores + YearReleased+ Rating;
+        return string.Format("Name: {0,-25} | Price: {1,-5:n2} $ | Genre: {2}", Name, Price, Genre);
     }
-
 }
