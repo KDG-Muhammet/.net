@@ -19,7 +19,7 @@ public class Game
         YearReleased = yearReleased;
         Rating = rating;
     }
-
+    
 
     public override string ToString()
     {

@@ -44,7 +44,7 @@ public class ConsoleUi
         while (stoppen)
         {
             Console.WriteLine(
-                "What would you like to do\n?" +
+                "What would you like to do?\n" +
                 "==========================\n" +
                 "0) Quit\n" +
                 "1) Show all Games\n" +
@@ -70,7 +70,7 @@ public class ConsoleUi
                     ShowStores();
                     break;
                 case "4":
-                    ShowStoresBasedOnGameName();
+                    ShowStoresBasedOnGameNameAndOpeningHour();
                     break;
             }
         }
@@ -89,7 +89,7 @@ public class ConsoleUi
     public void ShowGamesBasedOnGenre()
     {
         Console.WriteLine("give genre: 1=Action, 2=Adventure, 3=Horror");
-        int genre = Convert.ToInt16(Console.ReadLine());
+       int genre = Int16.Parse(Console.ReadLine());
         foreach (Game game in GamesList)
         {
             switch (genre)
@@ -118,19 +118,25 @@ public class ConsoleUi
     }
 
 
-    public void ShowStoresBasedOnGameName()
+    public void ShowStoresBasedOnGameNameAndOpeningHour()
     {
         Console.WriteLine("Enter the name of a game or leave blank:");
         string game = Console.ReadLine();
         Console.WriteLine("Enter a hour or leave blank: ");
-        int hour = Convert.ToInt16(Console.ReadLine());
+        String hour = Console.ReadLine();
+        int intHour = 0;
+        if (!string.IsNullOrWhiteSpace(hour))
+        {
+            intHour = Int16.Parse(hour);
+            
+        }
         foreach (Store store in StoresList )
         {
             foreach (Game storeGame in store.Games)
             {
-                if ((storeGame.Name.Equals(game)|| string.IsNullOrWhiteSpace(game)) && (store.OpeningHour.Hour.Equals(hour) || hour == -1))
+                if ((storeGame.Name.Equals(game) || string.IsNullOrWhiteSpace(game)) && (store.OpeningHour.Hour.Equals(intHour) || intHour == 0))
                 {
-                    Console.WriteLine(store.Name + " " + store.OpeningHour);
+                    Console.WriteLine( "Store: " + store.Name + " " + "OpeningHour: "  + store.OpeningHour + " Game: " + storeGame.Name);
                 } 
             }
         }
