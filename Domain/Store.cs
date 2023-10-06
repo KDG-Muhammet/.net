@@ -1,4 +1,4 @@
-﻿namespace StoreManagement;
+﻿namespace Domain;
 
 public class Store
 {
@@ -6,13 +6,14 @@ public class Store
     public List<Game> Games{ get; set; }
     public string Address{ get; set; }
     public TimeOnly OpeningHour{ get; set; }
-
-    public Store(string name, string address, TimeOnly openingHour) 
+    public int Id { get; set; }
+    public Store(string name, string address, TimeOnly openingHour, int id) 
     {
         Name = name;
         Games = new List<Game>();
         Address = address;
         OpeningHour = openingHour;
+        Id = id;
     }
  
     public override string ToString()

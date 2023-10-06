@@ -1,10 +1,11 @@
 ﻿using System.Net.Sockets;
+using Domain;
 
 namespace StoreManagement; 
 
 public class ConsoleUi
 {
-    private List<Game> GamesList { get; set; } = new List<Game>();
+    /*private List<Game> GamesList { get; set; } = new List<Game>();
     private List<Store> StoresList { get; set; } = new List<Store>();
 
     public void Seed()
@@ -34,7 +35,7 @@ public class ConsoleUi
 
         GamesList.AddRange(new[] { game1, game2, game3, game4 });
         StoresList.AddRange(new[] { store1, store2, store3, store4 });
-    }
+    }*/
 
 
     public void Run()

@@ -1,4 +1,4 @@
-﻿namespace StoreManagement;
+﻿namespace Domain; 
 
 public class Company
 {
@@ -6,7 +6,9 @@ public class Company
     public List<Game> Games{ get; set; }
     public string Address{ get; set; }
     public DateTime YearFounded{ get; set; }
-
+    
+    public int Id { get; set; }
+    
 
     public Company(string name, string address, DateTime yearFounded)
     {

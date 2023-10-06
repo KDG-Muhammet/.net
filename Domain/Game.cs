@@ -1,4 +1,4 @@
-﻿namespace StoreManagement;
+﻿namespace Domain;
 
 public class Game
 {
@@ -9,8 +9,9 @@ public class Game
     public List<Store> Stores{ get; set; }
     public DateTime YearReleased{ get; set; }
     public int Rating{ get; set; }
+    public int Id { get; set; }
 
-    public Game(string name, double? price, Genre genre, DateTime yearReleased, int rating)
+    public Game(string name, double? price, Genre genre, DateTime yearReleased, int rating, int id)
     {
         Name = name;
         Price = price;
@@ -18,6 +19,8 @@ public class Game
         Stores = new List<Store>();
         YearReleased = yearReleased;
         Rating = rating;
+        Id = id;
+
     }
     
 
