@@ -1,4 +1,4 @@
-﻿namespace StoreManagment;
+﻿namespace StoreManagement;
 
 public enum Genre : byte
 {

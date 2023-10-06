@@ -1,6 +1,6 @@
 ﻿using System.Net.Sockets;
 
-namespace StoreManagment;
+namespace StoreManagement; 
 
 public class ConsoleUi
 {
@@ -88,23 +88,19 @@ public class ConsoleUi
 
     public void ShowGamesBasedOnGenre()
     {
-        Console.WriteLine("give genre: 1=Action, 2=Adventure, 3=Horror");
-       int genre = Int16.Parse(Console.ReadLine());
+        string print = "Give Genre: ";
+        foreach (Genre genre in Enum.GetValues(typeof(Genre)))
+        {
+            print += (int)genre + "=" + genre.ToString() + " ";
+        }
+        Console.WriteLine(print);
+        int nummerOfGenre = int.Parse(Console.ReadLine());
         foreach (Game game in GamesList)
         {
-            switch (genre)
+            if (nummerOfGenre == (int)game.Genre)
             {
-                case 1:
-                    if (game.Genre.Equals(Genre.Action)) Console.WriteLine(game.ToString());
-                    
-                    break;
-                case 2:if (game.Genre.Equals(Genre.Adventure)) Console.WriteLine(game.ToString());
-
-                    break;
-                case 3: if (game.Genre.Equals(Genre.Horror)) Console.WriteLine(game.ToString());
-                    break;
+                Console.WriteLine(game.ToString());
             }
-            
             
         }
     }
@@ -132,13 +128,18 @@ public class ConsoleUi
         }
         foreach (Store store in StoresList )
         {
-            foreach (Game storeGame in store.Games)
+            if (intHour == 0 || store.OpeningHour.Hour.Equals(intHour)) 
             {
-                if ((storeGame.Name.Equals(game) || string.IsNullOrWhiteSpace(game)) && (store.OpeningHour.Hour.Equals(intHour) || intHour == 0))
+                foreach (Game storeGame in store.Games)
                 {
-                    Console.WriteLine( "Store: " + store.Name + " " + "OpeningHour: "  + store.OpeningHour + " Game: " + storeGame.Name);
-                } 
+                    if ( string.IsNullOrWhiteSpace(game) || storeGame.Name.Equals(game))
+                    {
+                        Console.WriteLine( "Store: " + store.Name + " " + "OpeningHour: "  + store.OpeningHour + " Game: " + storeGame.Name);
+                    } 
+                }
+                
             }
+            
         }
     }
     

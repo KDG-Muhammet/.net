@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManagment", "StoreManagment\StoreManagment.csproj", "{2DEF00C3-0721-4D8A-9104-F457F8EF953C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManagement", "StoreManagement\StoreManagement.csproj", "{2DEF00C3-0721-4D8A-9104-F457F8EF953C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

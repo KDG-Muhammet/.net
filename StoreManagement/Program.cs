@@ -1,8 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using StoreManagment;
+using StoreManagement;
 
-Console.WriteLine("Hello, World!");
 
 ConsoleUi consoleUi = new ConsoleUi();
 consoleUi.Run();
