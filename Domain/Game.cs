@@ -11,7 +11,7 @@ public class Game
     public int Rating{ get; set; }
     public int Id { get; set; }
 
-    public Game(string name, double? price, Genre genre, DateTime yearReleased, int rating, int id)
+    public Game(string name, double? price, Genre genre, DateTime yearReleased, int rating)
     {
         Name = name;
         Price = price;
@@ -19,8 +19,7 @@ public class Game
         Stores = new List<Store>();
         YearReleased = yearReleased;
         Rating = rating;
-        Id = id;
-
+        
     }
     
 

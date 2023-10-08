@@ -5,7 +5,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
-        <RootNamespace>StoreManagement</RootNamespace>
+        <RootNamespace>UI.CA</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

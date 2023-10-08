@@ -14,6 +14,5 @@ public interface IRepository
     public IEnumerable<Store> ReadAllStore();
     public IEnumerable<Store> ReadStoresByGameNameAndStoreOpeningHour(string name, int hour);
     public void CreateStore(Store store);
-     
-     
+    
 }

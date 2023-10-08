@@ -7,13 +7,12 @@ public class Store
     public string Address{ get; set; }
     public TimeOnly OpeningHour{ get; set; }
     public int Id { get; set; }
-    public Store(string name, string address, TimeOnly openingHour, int id) 
+    public Store(string name, string address, TimeOnly openingHour) 
     {
         Name = name;
         Games = new List<Game>();
         Address = address;
         OpeningHour = openingHour;
-        Id = id;
     }
  
     public override string ToString()

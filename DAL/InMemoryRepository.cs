@@ -9,18 +9,26 @@ public class InMemoryRepository : IRepository
 
     public static void Seed()
     {
-        Game game1 = new Game("Assassin's Creed Valhalla", 59.99, Genre.Action, new DateTime(2022, 3, 8, 10, 0, 0), 9,
-            1);
-        Game game2 = new Game("FIFA 21", 49.99, Genre.Action, new DateTime(2021, 9, 10, 10, 0, 0), 8, 2);
-        Game game3 = new Game("Cyberpunk 2077", 69.99, Genre.Adventure, new DateTime(2020, 5, 7, 10, 0, 0), 7, 3);
-        Game game4 = new Game("The Witcher 3: Wild Hunt", 39.99, Genre.Horror, new DateTime(2023, 7, 13, 10, 0, 0), 9,
-            4);
+        Game game1 = new Game("Assassin's Creed Valhalla", 59.99, Genre.Action, new DateTime(2022, 3, 8, 10, 0, 0), 9);
+        Game game2 = new Game("FIFA 21", 49.99, Genre.Action, new DateTime(2021, 9, 10, 10, 0, 0), 8);
+        Game game3 = new Game("Cyberpunk 2077", 69.99, Genre.Adventure, new DateTime(2020, 5, 7, 10, 0, 0), 7);
+        Game game4 = new Game("The Witcher 3: Wild Hunt", 39.99, Genre.Horror, new DateTime(2023, 7, 13, 10, 0, 0), 9);
 
-        Store store1 = new Store("Steam Store", "123 Main Street", new TimeOnly(10, 0, 0), 1);
-        Store store2 = new Store("Epic Games Store", "456 Elm Street", new TimeOnly(11, 0, 0), 2);
-        Store store3 = new Store("Ubisoft Store", "789 Oak Street", new TimeOnly(12, 0, 0), 3);
-        Store store4 = new Store("GOG Store", "101 Pine Street", new TimeOnly(13, 0, 0), 4);
+        game1.Id = 1;
+        game2.Id = 2;
+        game3.Id = 3;
+        game4.Id = 4;
+        
+        Store store1 = new Store("Steam Store", "123 Main Street", new TimeOnly(10, 0, 0));
+        Store store2 = new Store("Epic Games Store", "456 Elm Street", new TimeOnly(11, 0, 0));
+        Store store3 = new Store("Ubisoft Store", "789 Oak Street", new TimeOnly(12, 0, 0));
+        Store store4 = new Store("GOG Store", "101 Pine Street", new TimeOnly(13, 0, 0));
 
+        store1.Id = 1;
+        store2.Id = 2;
+        store3.Id = 3;
+        store4.Id = 4;
+        
         store1.Games.Add(game1);
         store1.Games.Add(game2);
         store2.Games.Add(game2);
@@ -35,7 +43,7 @@ public class InMemoryRepository : IRepository
         GamesList.AddRange(new[] { game1, game2, game3, game4 });
         StoresList.AddRange(new[] { store1, store2, store3, store4 });
     }
-
+    
 
     public Game ReadGame(int id)
     {
@@ -99,11 +107,11 @@ public class InMemoryRepository : IRepository
         List<Store> filteredStoreList = new List<Store>();
         foreach (Store store in StoresList)
         {
-            if (hour == 0 || store.OpeningHour.Hour.Equals(hour))
+            if (hour == 0 || store.OpeningHour.Hour == hour)
             {
                 foreach (Game storeGame in store.Games)
                 {
-                    if (string.IsNullOrWhiteSpace(name) || storeGame.Name.Equals(name))
+                    if (string.IsNullOrEmpty(name) || storeGame.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                     {
                         filteredStoreList.Add(store);
                     }
