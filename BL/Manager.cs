@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using DAL;
 using Domain;
 
@@ -33,6 +34,10 @@ public class Manager : IManager
     public Game AddGame(string name, double? price, Genre genre, DateTime yearReleased, int rating)
     {
         Game newGame = new Game(name, price, genre, yearReleased,  rating) ;
+        List<ValidationResult> errors = new List<ValidationResult>();
+        Validator.TryValidateObject(newGame, new ValidationContext(newGame), errors, validateAllProperties: true);
+        
+        
         _repository.CreateGame(newGame);
         return newGame;
     }
@@ -55,6 +60,9 @@ public class Manager : IManager
     public Store AddStore(string name, string address, TimeOnly openingHour)
     {
         Store newStore = new Store(name, address, openingHour);
+        List<ValidationResult> errors = new List<ValidationResult>();
+        Validator.TryValidateObject(newStore, new ValidationContext(newStore), errors, validateAllProperties: true);
+
         _repository.CreateStore(newStore);
         return newStore;
     }

@@ -1,10 +1,14 @@
-﻿namespace Domain;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain;
 
 public class Store
 {
+    [Required]
     public string Name{ get; set; }
     public List<Game> Games{ get; set; }
     public string Address{ get; set; }
+    [Range(0,24)]
     public TimeOnly OpeningHour{ get; set; }
     public int Id { get; set; }
     public Store(string name, string address, TimeOnly openingHour) 

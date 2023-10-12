@@ -27,7 +27,9 @@ public class ConsoleUi
                 "2) Show Games of genre\n" +
                 "3) Show all Stores\n" +
                 "4) Show stores with Game and/or opening hour\n" +
-                "Choice (0-4):\n");
+                "5) Add a Game\n" +
+                "6) Add a Store\n" +
+                "Choice (0-6):\n");
             string choice = Console.ReadLine();
 
 
@@ -47,6 +49,12 @@ public class ConsoleUi
                     break;
                 case "4":
                     ShowStoresBasedOnGameNameAndOpeningHour();
+                    break;
+                case "5":
+                    newGame();
+                    break;
+                case "6":
+                    newStore();
                     break;
             }
         }
@@ -89,8 +97,7 @@ public class ConsoleUi
             Console.WriteLine(store.ToString());
         }
     }
-
-
+    
     public void ShowStoresBasedOnGameNameAndOpeningHour()
     {
         Console.WriteLine("Enter the name of a game or leave blank:");
@@ -111,6 +118,30 @@ public class ConsoleUi
              Console.WriteLine(" Game: " + currentGame.Name);
          }
         }
+    }
+
+    public void newGame()
+    {
+        Console.WriteLine("Add Game");
+        Console.WriteLine("========");
+        Console.WriteLine("Name: ");
+        string game = Console.ReadLine();
+        Console.WriteLine("price: ");
+        double price = Console.ReadLine();
+        Console.WriteLine("Genre: ");
+        int genre = Console.ReadLine();
+        Console.WriteLine("yearReleased");
+        string yearReleased = Console.ReadLine();
+        Console.WriteLine("rating: ");
+        int rating = Console.ReadLine();
+
+        Game newGame = _manager.AddGame(game, price, genre, yearReleased, rating);
+
+    }
+    
+    public void newStore()
+    {
+        
     }
     
 }

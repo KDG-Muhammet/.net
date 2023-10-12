@@ -34,6 +34,7 @@ public class InMemoryRepository : IRepository
         store2.Games.Add(game2);
         store3.Games.Add(game3);
         store4.Games.Add(game4);
+        store1.Games.Add(game3);
 
         game1.Stores.Add(store1);
         game1.Stores.Add(store2);
