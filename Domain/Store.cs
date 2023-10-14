@@ -9,9 +9,9 @@ public class Store
     public List<Game> Games{ get; set; }
     public string Address{ get; set; }
     [Range(0,24)]
-    public TimeOnly OpeningHour{ get; set; }
+    public int OpeningHour{ get; set; }
     public int Id { get; set; }
-    public Store(string name, string address, TimeOnly openingHour) 
+    public Store(string name, string address, int openingHour) 
     {
         Name = name;
         Games = new List<Game>();
@@ -21,6 +21,6 @@ public class Store
  
     public override string ToString()
     {
-        return String.Format("Name Store: {0,-20} address: {1,-20} OpeningHour: {2}", Name, Address, OpeningHour);
+        return String.Format("Name Store: {0,-20} address: {1,-20} OpeningHour: {2}:00", Name, Address, OpeningHour);
     }
 }

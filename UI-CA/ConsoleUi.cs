@@ -1,4 +1,5 @@
-﻿using System.Net.Sockets;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Sockets;
 using BL;
 using Domain;
 
@@ -124,23 +125,64 @@ public class ConsoleUi
     {
         Console.WriteLine("Add Game");
         Console.WriteLine("========");
+        
         Console.WriteLine("Name: ");
         string game = Console.ReadLine();
-        Console.WriteLine("price: ");
-        double price = Console.ReadLine();
-        Console.WriteLine("Genre: ");
-        int genre = Console.ReadLine();
-        Console.WriteLine("yearReleased");
-        string yearReleased = Console.ReadLine();
-        Console.WriteLine("rating: ");
-        int rating = Console.ReadLine();
-
-        Game newGame = _manager.AddGame(game, price, genre, yearReleased, rating);
+        
+        Console.WriteLine("price (default 0.0): ");
+        string priceInput = Console.ReadLine();
+        double price = string.IsNullOrWhiteSpace(priceInput) ? 0.0 : Convert.ToDouble(priceInput);
+        
+        
+        Console.WriteLine("Genre (default 1): ");
+        string genreInput = Console.ReadLine();
+        int intGenre = string.IsNullOrWhiteSpace(genreInput) ? 1 : Convert.ToByte(genreInput);
+        Genre selectedGenre = (Genre)intGenre;
+        
+        Console.WriteLine("yearReleased (default today)");
+        string yearReleasedInput = Console.ReadLine();
+        DateTime dateTime = string.IsNullOrWhiteSpace(yearReleasedInput) ? DateTime.Today: Convert.ToDateTime(yearReleasedInput);
+        DateOnly yearReleased = DateOnly.FromDateTime(dateTime); 
+        
+        Console.WriteLine("rating (default 0): ");
+        string ratingInput = Console.ReadLine();
+        int rating = string.IsNullOrWhiteSpace(ratingInput) ? 0 : Convert.ToByte(ratingInput);
+        
+        try
+        { 
+            _manager.AddGame(game, price, selectedGenre, yearReleased, rating);
+        }
+        catch (ValidationException e)
+        {
+            Console.WriteLine(e.Message);
+        }
 
     }
     
     public void newStore()
     {
+        
+        Console.WriteLine("Add Store");
+        Console.WriteLine("========");
+        Console.WriteLine("Name: ");
+        string store = Console.ReadLine();
+        
+        Console.WriteLine("Address: ");
+        string address = Console.ReadLine();
+        
+        Console.WriteLine("openingHour");
+        string openingHourInput = Console.ReadLine();
+        int openingHour = string.IsNullOrWhiteSpace(openingHourInput) ? 0 : Convert.ToByte(openingHourInput);
+        
+        try
+        { 
+            _manager.AddStore(store,address,openingHour);
+        }
+        catch (ValidationException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        
         
     }
     

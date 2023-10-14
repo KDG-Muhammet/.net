@@ -9,20 +9,20 @@ public class InMemoryRepository : IRepository
 
     public static void Seed()
     {
-        Game game1 = new Game("Assassin's Creed Valhalla", 59.99, Genre.Action, new DateTime(2022, 3, 8, 10, 0, 0), 9);
-        Game game2 = new Game("FIFA 21", 49.99, Genre.Action, new DateTime(2021, 9, 10, 10, 0, 0), 8);
-        Game game3 = new Game("Cyberpunk 2077", 69.99, Genre.Adventure, new DateTime(2020, 5, 7, 10, 0, 0), 7);
-        Game game4 = new Game("The Witcher 3: Wild Hunt", 39.99, Genre.Horror, new DateTime(2023, 7, 13, 10, 0, 0), 9);
+        Game game1 = new Game("Assassin's Creed Valhalla", 59.99, Genre.Action, new DateOnly(2022, 3, 8), 9);
+        Game game2 = new Game("FIFA 21", 49.99, Genre.Action, new DateOnly(2021, 9, 10 ), 8);
+        Game game3 = new Game("Cyberpunk 2077", 69.99, Genre.Adventure, new DateOnly(2020, 5, 7), 7);
+        Game game4 = new Game("The Witcher 3: Wild Hunt", 39.99, Genre.Horror, new DateOnly(2023, 7, 13), 9);
 
         game1.Id = 1;
         game2.Id = 2;
         game3.Id = 3;
         game4.Id = 4;
         
-        Store store1 = new Store("Steam Store", "123 Main Street", new TimeOnly(10, 0, 0));
-        Store store2 = new Store("Epic Games Store", "456 Elm Street", new TimeOnly(11, 0, 0));
-        Store store3 = new Store("Ubisoft Store", "789 Oak Street", new TimeOnly(12, 0, 0));
-        Store store4 = new Store("GOG Store", "101 Pine Street", new TimeOnly(13, 0, 0));
+        Store store1 = new Store("Steam Store", "123 Main Street", 10);
+        Store store2 = new Store("Epic Games Store", "456 Elm Street", 11);
+        Store store3 = new Store("Ubisoft Store", "789 Oak Street", 12);
+        Store store4 = new Store("GOG Store", "101 Pine Street", 13);
 
         store1.Id = 1;
         store2.Id = 2;
@@ -108,7 +108,7 @@ public class InMemoryRepository : IRepository
         List<Store> filteredStoreList = new List<Store>();
         foreach (Store store in StoresList)
         {
-            if (hour == 0 || store.OpeningHour.Hour == hour)
+            if (hour == 0 || store.OpeningHour == hour)
             {
                 foreach (Game storeGame in store.Games)
                 {

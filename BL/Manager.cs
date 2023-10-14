@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices.JavaScript;
+using System.Text;
 using DAL;
 using Domain;
 
@@ -31,13 +33,22 @@ public class Manager : IManager
         return _repository.ReadGameOfGenre(genre);
     }
 
-    public Game AddGame(string name, double? price, Genre genre, DateTime yearReleased, int rating)
+    public Game AddGame(string name, double? price, Genre genre, DateOnly yearReleased, int rating)
     {
+       
         Game newGame = new Game(name, price, genre, yearReleased,  rating) ;
         List<ValidationResult> errors = new List<ValidationResult>();
-        Validator.TryValidateObject(newGame, new ValidationContext(newGame), errors, validateAllProperties: true);
-        
-        
+        bool isValid =  Validator.TryValidateObject(newGame, new ValidationContext(newGame), errors, validateAllProperties: true);
+        if (!isValid)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (ValidationResult validationResult in errors)
+            {
+                sb.Append(" " + validationResult.ErrorMessage);
+            }
+            throw new ValidationException(sb.ToString());
+        }
+       
         _repository.CreateGame(newGame);
         return newGame;
     }
@@ -57,12 +68,22 @@ public class Manager : IManager
         return _repository.ReadStoresByGameNameAndStoreOpeningHour(name, hour);
     }
 
-    public Store AddStore(string name, string address, TimeOnly openingHour)
+    public Store AddStore(string name, string address, int openingHour)
     {
         Store newStore = new Store(name, address, openingHour);
         List<ValidationResult> errors = new List<ValidationResult>();
-        Validator.TryValidateObject(newStore, new ValidationContext(newStore), errors, validateAllProperties: true);
+       bool isValid = Validator.TryValidateObject(newStore, new ValidationContext(newStore), errors, validateAllProperties: true);
 
+       if (!isValid)
+       {
+           StringBuilder sb = new StringBuilder();
+           foreach (ValidationResult validationResult in errors)
+           {
+               sb.Append(" " + validationResult.ErrorMessage);
+           }
+           throw new ValidationException(sb.ToString());
+       }
+        
         _repository.CreateStore(newStore);
         return newStore;
     }
