@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Net.Sockets;
 using BL;
 using Domain;
 
@@ -17,8 +16,8 @@ public class ConsoleUi
     
     public void Run()
     {
-        bool stoppen = true;
-        while (stoppen)
+        bool stop = true;
+        while (stop)
         {
             Console.WriteLine(
                 "What would you like to do?\n" +
@@ -37,7 +36,7 @@ public class ConsoleUi
             switch (choice)
             {
                 case "0":
-                    stoppen = false;
+                    stop = false;
                     break;
                 case "1":
                     ShowGames();
@@ -52,10 +51,10 @@ public class ConsoleUi
                     ShowStoresBasedOnGameNameAndOpeningHour();
                     break;
                 case "5":
-                    newGame();
+                    NewGame();
                     break;
                 case "6":
-                    newStore();
+                    NewStore();
                     break;
             }
         }
@@ -76,18 +75,14 @@ public class ConsoleUi
         string print = "Give Genre: ";
         foreach (Genre genre in Enum.GetValues(typeof(Genre)))
         {
-            print += (int)genre + "=" + genre.ToString() + " ";
+            print += (int)genre + "=" + genre + " ";
         }
         Console.WriteLine(print);
-        int nummerOfGenre = int.Parse(Console.ReadLine());
+        int numberOfGenre = int.Parse(Console.ReadLine());
         
-        foreach (Game game in _manager.GetGameOfGenre(nummerOfGenre))
+        foreach (Game game in _manager.GetGameOfGenre(numberOfGenre))
         {
-            if (nummerOfGenre == (int)game.Genre)
-            {
-                Console.WriteLine(game.ToString());
-            }
-             
+            Console.WriteLine(game.ToString());
         }
     }
 
@@ -106,84 +101,97 @@ public class ConsoleUi
         Console.WriteLine("Enter a hour or leave blank: ");
         String hour = Console.ReadLine();
         int intHour = 0;
-        if (!string.IsNullOrWhiteSpace(hour))
-        {
-            intHour = Convert.ToByte(hour);
-            
-        }
+        if (!string.IsNullOrWhiteSpace(hour)) intHour = Convert.ToByte(hour);
         foreach (var store in _manager.GetStoresByGameNameAndStoreOpeningHour(game, intHour))
         {
-         Console.WriteLine( "Store: " + store.Name + " " + "OpeningHour: "  + store.OpeningHour);
-         foreach (var currentGame in store.Games)
-         {
-             Console.WriteLine(" Game: " + currentGame.Name);
-         }
+            Console.WriteLine( "Store: " + store.Name + " " + "OpeningHour: "  + store.OpeningHour);
+            foreach (var currentGame in store.Games)
+            {
+                Console.WriteLine(" Game: " + currentGame.Name);
+            }
         }
     }
 
-    public void newGame()
+    public void NewGame()
     {
-        Console.WriteLine("Add Game");
-        Console.WriteLine("========");
-        
-        Console.WriteLine("Name: ");
-        string game = Console.ReadLine();
-        
-        Console.WriteLine("price (default 0.0): ");
-        string priceInput = Console.ReadLine();
-        double price = string.IsNullOrWhiteSpace(priceInput) ? 0.0 : Convert.ToDouble(priceInput);
-        
-        
-        Console.WriteLine("Genre (default 1): ");
-        string genreInput = Console.ReadLine();
-        int intGenre = string.IsNullOrWhiteSpace(genreInput) ? 1 : Convert.ToByte(genreInput);
-        Genre selectedGenre = (Genre)intGenre;
-        
-        Console.WriteLine("yearReleased (default today)");
-        string yearReleasedInput = Console.ReadLine();
-        DateTime dateTime = string.IsNullOrWhiteSpace(yearReleasedInput) ? DateTime.Today: Convert.ToDateTime(yearReleasedInput);
-        DateOnly yearReleased = DateOnly.FromDateTime(dateTime); 
-        
-        Console.WriteLine("rating (default 0): ");
-        string ratingInput = Console.ReadLine();
-        int rating = string.IsNullOrWhiteSpace(ratingInput) ? 0 : Convert.ToByte(ratingInput);
-        
-        try
+        bool isValid;
+        do
         { 
-            _manager.AddGame(game, price, selectedGenre, yearReleased, rating);
-        }
-        catch (ValidationException e)
-        {
-            Console.WriteLine(e.Message);
-        }
+            Console.WriteLine("Add Game");
+            Console.WriteLine("========");
+        
+            Console.WriteLine("Name: ");
+            string game = Console.ReadLine();
+        
+            Console.WriteLine("price (format: 20,99 default 0,0): ");
+            string priceInput = Console.ReadLine();
+            double price = string.IsNullOrWhiteSpace(priceInput) ? 0.0 : Convert.ToDouble(priceInput);
+        
+        
+            
+            string print = "Genre (default 1): ";
+            foreach (Genre genre in Enum.GetValues(typeof(Genre)))
+            { 
+                print += (int)genre + "=" + genre + " ";
+            }
+            Console.WriteLine(print);
+            string genreInput = Console.ReadLine();
+            int intGenre = string.IsNullOrWhiteSpace(genreInput) ? 1 : Convert.ToByte(genreInput);
+            Genre selectedGenre = (Genre)intGenre;
+        
+            Console.WriteLine("yearReleased (format: dd/mm/yyy, default today)");
+            string yearReleasedInput = Console.ReadLine();
+            DateTime dateTime = string.IsNullOrWhiteSpace(yearReleasedInput) ? DateTime.Today: Convert.ToDateTime(yearReleasedInput);
+            DateOnly yearReleased = DateOnly.FromDateTime(dateTime); 
+        
+            Console.WriteLine("rating (default 0): ");
+            string ratingInput = Console.ReadLine();
+            int rating = string.IsNullOrWhiteSpace(ratingInput) ? 0 : Convert.ToByte(ratingInput);
+        
+            try
+            { 
+                _manager.AddGame(game, price, selectedGenre, yearReleased, rating);
+                isValid = false;
+            }
+            catch (ValidationException e)
+            {
+                Console.WriteLine("Error:" + e.Message);
+                isValid = true;
+            }
+        
+        } while (isValid);
 
     }
     
-    public void newStore()
+    public void NewStore()
     {
-        
-        Console.WriteLine("Add Store");
-        Console.WriteLine("========");
-        Console.WriteLine("Name: ");
-        string store = Console.ReadLine();
-        
-        Console.WriteLine("Address: ");
-        string address = Console.ReadLine();
-        
-        Console.WriteLine("openingHour");
-        string openingHourInput = Console.ReadLine();
-        int openingHour = string.IsNullOrWhiteSpace(openingHourInput) ? 0 : Convert.ToByte(openingHourInput);
-        
-        try
-        { 
-            _manager.AddStore(store,address,openingHour);
-        }
-        catch (ValidationException e)
+        bool isValid;
+        do
         {
-            Console.WriteLine(e.Message);
-        }
+            Console.WriteLine("Add Store");
+            Console.WriteLine("========");
+            Console.WriteLine("Name: ");
+            string store = Console.ReadLine();
         
+            Console.WriteLine("Address: ");
+            string address = Console.ReadLine();
         
+            Console.WriteLine("openingHour");
+            string openingHourInput = Console.ReadLine();
+            int openingHour = string.IsNullOrWhiteSpace(openingHourInput) ? 0 : Convert.ToByte(openingHourInput);
+        
+            try
+            { 
+                _manager.AddStore(store,address,openingHour);
+                isValid = false;
+            }
+            catch (ValidationException e)
+            {
+                Console.WriteLine("Error:" + e.Message);
+                isValid = true;
+            }
+        
+        } while (isValid);
     }
     
 }
