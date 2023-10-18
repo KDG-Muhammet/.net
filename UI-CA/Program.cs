@@ -1,8 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using BL;
-using DAL;
-using UI.CA;
+using StoreManagement.BL;
+using StoreManagement.DAL;
+using StoreManagement.UI.CA;
 
 IRepository repository = new InMemoryRepository();
 IManager manager = new Manager(repository);

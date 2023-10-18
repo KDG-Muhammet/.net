@@ -1,6 +1,6 @@
-using Domain;
+using StoreManagement.BL.Domain;
 
-namespace BL;
+namespace StoreManagement.BL;
 
 public interface IManager
 {

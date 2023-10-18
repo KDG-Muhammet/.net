@@ -1,6 +1,6 @@
-﻿using Domain;
+﻿using StoreManagement.BL.Domain;
 
-namespace DAL;
+namespace StoreManagement.DAL;
 
 public interface IRepository
 {

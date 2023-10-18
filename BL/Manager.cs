@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using DAL;
-using Domain;
+using StoreManagement.BL.Domain;
+using StoreManagement.DAL;
 
-namespace BL;
+namespace StoreManagement.BL;
 
 public class Manager : IManager
 {

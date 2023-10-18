@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain;
+namespace StoreManagement.BL.Domain;
 
 public class Store
 {
@@ -18,9 +18,5 @@ public class Store
         Address = address;
         OpeningHour = openingHour;
     }
- 
-    public override string ToString()
-    {
-        return String.Format("Name Store: {0,-20} address: {1,-20} OpeningHour: {2}:00", Name, Address, OpeningHour);
-    }
+    
 }

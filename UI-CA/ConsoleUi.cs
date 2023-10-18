@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using BL;
-using Domain;
+using StoreManagement.BL;
+using StoreManagement.BL.Domain;
+using StoreManagement.UI.CA.Extensions;
 
-namespace UI.CA; 
+namespace StoreManagement.UI.CA; 
 
 public class ConsoleUi
 {
@@ -65,7 +66,7 @@ public class ConsoleUi
     {
         foreach (Game game in _manager.GetAllGames())
         {
-            Console.WriteLine(game.ToString());
+            Console.WriteLine(game.GetInfo());
         }
     }
 
@@ -82,7 +83,7 @@ public class ConsoleUi
         
         foreach (Game game in _manager.GetGameOfGenre(numberOfGenre))
         {
-            Console.WriteLine(game.ToString());
+            Console.WriteLine(game.GetInfo());
         }
     }
 
@@ -90,7 +91,7 @@ public class ConsoleUi
     {
         foreach (var store in _manager.GetAllStore())
         {
-            Console.WriteLine(store.ToString());
+            Console.WriteLine(store.GetInfo());
         }
     }
     

@@ -1,4 +1,4 @@
-﻿namespace Domain;
+﻿namespace StoreManagement.BL.Domain;
 
 public enum Genre : byte
 {

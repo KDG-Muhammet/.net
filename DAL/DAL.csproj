@@ -4,6 +4,8 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
+        <AssemblyName>StoreManagement.DAL</AssemblyName>
+        <RootNamespace>StoreManagement.DAL</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

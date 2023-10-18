@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain;
+namespace StoreManagement.BL.Domain;
 
 public class Game : IValidatableObject
 {
@@ -28,12 +28,6 @@ public class Game : IValidatableObject
         Rating = rating;
         
     }
-    
-    public override string ToString()
-    {
-        return String.Format("Name: {0,-25} | Price: {1,-5:n2} $ | Genre: {2}", Name, Price, Genre);
-    }
-
     IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
     {
         List<ValidationResult> errors = new List<ValidationResult>();

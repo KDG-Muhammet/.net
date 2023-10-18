@@ -5,12 +5,14 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
-        <RootNamespace>UI.CA</RootNamespace>
+        <RootNamespace>StoreManagement.UI.CA</RootNamespace>
+        <AssemblyName>StoreManagement.UI.CA</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\BL\BL.csproj" />
       <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
+
 
 </Project>

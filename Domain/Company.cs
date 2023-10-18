@@ -1,4 +1,4 @@
-﻿namespace Domain; 
+﻿namespace StoreManagement.BL.Domain; 
 
 public class Company
 {
@@ -16,12 +16,6 @@ public class Company
         Games = new List<Game>();
         Address = address;
         YearFounded = yearFounded;
-    }
-
-    public override string ToString()
-    {
-        return String.Format("Name Company: {0,-20} address: {1,-20} YearFounded: {2}", Name, Address, YearFounded);
-
     }
     
 }

@@ -4,6 +4,8 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
+        <AssemblyName>StoreManagement.BL.Domain</AssemblyName>
+        <RootNamespace>StoreManagement.BL.Domain</RootNamespace>
     </PropertyGroup>
 
 </Project>
