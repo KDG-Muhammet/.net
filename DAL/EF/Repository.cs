@@ -1,3 +1,4 @@
+using System.Globalization;
 using StoreManagement.BL.Domain;
 
 namespace StoreManagement.DAL.EF;
@@ -14,7 +15,7 @@ public class Repository : IRepository
 
     public Game ReadGame(int id)
     {
-        throw new NotImplementedException();
+        return _ctx.Games.Single(game => game.Id == id);
     }
 
     public IEnumerable<Game> ReadAllGames()
@@ -24,17 +25,20 @@ public class Repository : IRepository
 
     public IEnumerable<Game> ReadGameOfGenre(int genre)
     {
-        throw new NotImplementedException();
+        return _ctx.Games.Where(game => genre == (int)game.Genre);
     }
 
     public void CreateGame(Game game)
     {
-        throw new NotImplementedException();
+        int id = _ctx.Games.Count() + 1;
+        game.Id = id;
+        _ctx.Games.Add(game);
+        _ctx.SaveChanges();
     }
 
     public Store ReadStore(int id)
     {
-        throw new NotImplementedException();
+        return _ctx.Stores.Single(store => store.Id == id);
     }
 
     public IEnumerable<Store> ReadAllStore()
@@ -44,11 +48,18 @@ public class Repository : IRepository
 
     public IEnumerable<Store> ReadStoresByGameNameAndStoreOpeningHour(string name, int hour)
     {
-        throw new NotImplementedException();
+
+        IEnumerable<Store> stores =  _ctx.Stores.Where(store => hour == 0 || store.OpeningHour == hour && string.IsNullOrEmpty(name) || store.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        return stores;
+
     }
 
     public void CreateStore(Store store)
     {
-        throw new NotImplementedException();
+        int id = _ctx.Stores.Count() + 1;
+        store.Id = id;
+        _ctx.Stores.Add(store);
+        _ctx.SaveChanges();
+        
     }
 }
