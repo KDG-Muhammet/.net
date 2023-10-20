@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StoreManagement.BL.Domain;
 
@@ -10,7 +11,9 @@ public class Game : IValidatableObject
     public double? Price{ get; set; } 
     [EnumDataType(typeof(Genre))]
     public Genre Genre{ get; set; }
+    [NotMapped]
     public Company Company{ get; set; }
+    [NotMapped]
     public List<Store> Stores{ get; set; }
     public DateOnly YearReleased{ get; set; }
     
