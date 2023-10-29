@@ -38,9 +38,7 @@ public static class DataSeeder
         game1.Stores.Add(store2);
         game3.Stores.Add(store1);
         game4.Stores.Add(store2);
-
-        //gameDbContext.GamesList.AddRange(new[] { game1, game2, game3, game4 });
-        //gameDbContext.StoresList.AddRange(new[] { store1, store2, store3, store4 });
+        
         gameDbContext.Games.AddRange(new[] { game1, game2, game3, game4 });
         gameDbContext.Stores.AddRange(new[] { store1, store2, store3, store4 });
 

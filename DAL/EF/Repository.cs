@@ -48,12 +48,14 @@ public class Repository : IRepository
 
     public IEnumerable<Store> ReadStoresByGameNameAndStoreOpeningHour(string name, int hour)
     {
+        
+        IEnumerable<Store> storesWithMatchingHour = _ctx.Stores.Where(store => hour == 0 || store.OpeningHour == hour); 
+        IEnumerable<Store> matchingStores = storesWithMatchingHour
+            .Where(store => string.IsNullOrEmpty(name) || store.Games.Any(game => game.Name.Equals(name, StringComparison.OrdinalIgnoreCase)));
 
-        IEnumerable<Store> stores =  _ctx.Stores.Where(store => hour == 0 || store.OpeningHour == hour && string.IsNullOrEmpty(name) || store.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-        return stores;
+        return matchingStores;
 
     }
-
     public void CreateStore(Store store)
     {
         int id = _ctx.Stores.Count() + 1;
