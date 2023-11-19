@@ -81,7 +81,7 @@ public class ConsoleUi
         Console.WriteLine(print);
         int numberOfGenre = int.Parse(Console.ReadLine());
         
-        foreach (Game game in _manager.GetGameOfGenre(numberOfGenre))
+        foreach (Game game in _manager.GetGameOfGenre((Genre)numberOfGenre))
         {
             Console.WriteLine(game.GetInfo());
         }
@@ -97,19 +97,15 @@ public class ConsoleUi
     
     public void ShowStoresBasedOnGameNameAndOpeningHour()
     {
-        Console.WriteLine("Enter the name of a game or leave blank:");
+        Console.WriteLine("Enter the name of a store or leave blank:");
         string game = Console.ReadLine();
         Console.WriteLine("Enter a hour or leave blank: ");
         String hour = Console.ReadLine();
         int intHour = 0;
         if (!string.IsNullOrWhiteSpace(hour)) intHour = Convert.ToByte(hour);
-        foreach (var store in _manager.GetStoresByGameNameAndStoreOpeningHour(game, intHour))
+        foreach (var store in _manager.GetStoresByStoreNameAndStoreOpeningHour(game, intHour))
         {
             Console.WriteLine( "Store: " + store.Name + " " + "OpeningHour: "  + store.OpeningHour);
-            foreach (var currentGame in store.Games)
-            {
-                Console.WriteLine(" Game: " + currentGame.Name);
-            }
         }
     }
 

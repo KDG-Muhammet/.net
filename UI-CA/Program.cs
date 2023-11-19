@@ -9,7 +9,7 @@ using StoreManagement.UI.CA;
 
 
 DbContextOptionsBuilder dbOptionsBuilder = new DbContextOptionsBuilder<GameDbContext>();
-dbOptionsBuilder.UseSqlite("Data Source=AppDatabase.db.sqlite");
+dbOptionsBuilder.UseSqlite("Data Source=../../../../pDatabase.db.sqlite");
 GameDbContext ctx = new GameDbContext(dbOptionsBuilder.Options);
 IRepository repo = new Repository(ctx);
 IManager manager = new Manager(repo);

@@ -1,4 +1,5 @@
 using System.Globalization;
+using Microsoft.EntityFrameworkCore;
 using StoreManagement.BL.Domain;
 
 namespace StoreManagement.DAL.EF;
@@ -23,9 +24,9 @@ public class Repository : IRepository
         return _ctx.Games;
     }
 
-    public IEnumerable<Game> ReadGameOfGenre(int genre)
+    public IEnumerable<Game> ReadGameOfGenre(Genre genre)
     {
-        return _ctx.Games.Where(game => genre == (int)game.Genre);
+        return _ctx.Games.Where(game => genre == game.Genre);
     }
 
     public void CreateGame(Game game)
@@ -46,13 +47,27 @@ public class Repository : IRepository
         return _ctx.Stores;
     }
 
-    public IEnumerable<Store> ReadStoresByGameNameAndStoreOpeningHour(string name, int hour)
+    public IEnumerable<Store> ReadStoresByStoreNameAndStoreOpeningHour(string name, int? hour)
     {
         
+        // IQueryable<Store> queryable = _ctx.Stores.AsQueryable();
+        //
+        // if (!string.IsNullOrEmpty(name))
+        // {
+        //    queryable = _ctx.Stores.Where(store => store.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        // }
+        //
+        // if (hour.HasValue)
+        // {
+        //     queryable = _ctx.Stores.Where(store => store.OpeningHour == hour);
+        // }
+        //
+        // return queryable.ToList();
+
+
         IEnumerable<Store> storesWithMatchingHour = _ctx.Stores.Where(store => hour == 0 || store.OpeningHour == hour); 
         IEnumerable<Store> matchingStores = storesWithMatchingHour
-            .Where(store => string.IsNullOrEmpty(name) || store.Games.Any(game => game.Name.Equals(name, StringComparison.OrdinalIgnoreCase)));
-
+            .Where(store => string.IsNullOrEmpty(name) || store.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         return matchingStores;
 
     }

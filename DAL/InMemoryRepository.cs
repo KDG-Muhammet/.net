@@ -64,12 +64,12 @@ public class InMemoryRepository : IRepository
         return GamesList;
     }
 
-    public IEnumerable<Game> ReadGameOfGenre(int genre)
+    public IEnumerable<Game> ReadGameOfGenre(Genre genre)
     {
         List<Game> gamesOfGenreList = new List<Game>();
         foreach (Game game in GamesList)
         {
-            if (genre == (int)game.Genre)
+            if (genre == game.Genre)
             {
                 gamesOfGenreList.Add(game);
             }
@@ -103,19 +103,16 @@ public class InMemoryRepository : IRepository
         return StoresList;
     }
 
-    public IEnumerable<Store> ReadStoresByGameNameAndStoreOpeningHour(string name, int hour)
+    public IEnumerable<Store> ReadStoresByStoreNameAndStoreOpeningHour(string name, int? hour)
     {
         List<Store> filteredStoreList = new List<Store>();
         foreach (Store store in StoresList)
         {
             if (hour == 0 || store.OpeningHour == hour)
             {
-                foreach (Game storeGame in store.Games)
+                if (string.IsNullOrEmpty(name) || store.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (string.IsNullOrEmpty(name) || storeGame.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                    {
-                        filteredStoreList.Add(store);
-                    }
+                    filteredStoreList.Add(store);
                 }
             }
         }

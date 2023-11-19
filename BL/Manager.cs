@@ -27,7 +27,7 @@ public class Manager : IManager
         return _repository.ReadAllGames();
     }
 
-    public IEnumerable<Game> GetGameOfGenre(int genre)
+    public IEnumerable<Game> GetGameOfGenre(Genre genre)
     {
         return _repository.ReadGameOfGenre(genre);
     }
@@ -62,9 +62,9 @@ public class Manager : IManager
         return _repository.ReadAllStore();
     }
 
-    public IEnumerable<Store> GetStoresByGameNameAndStoreOpeningHour(string name, int hour)
+    public IEnumerable<Store> GetStoresByStoreNameAndStoreOpeningHour(string name, int hour)
     {
-        return _repository.ReadStoresByGameNameAndStoreOpeningHour(name, hour);
+        return _repository.ReadStoresByStoreNameAndStoreOpeningHour(name, hour);
     }
 
     public Store AddStore(string name, string address, int openingHour)

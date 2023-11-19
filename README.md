@@ -15,7 +15,9 @@
 
 ### Enkel zoeken op naam
 ```sql
-
+SELECT "s"."Id", "s"."Address", "s"."Name", "s"."OpeningHour"
+FROM "Stores" AS "s"
+WHERE "s"."Name" = @__name_0
 ```
 
 ### Enkel zoeken op openinghour
