@@ -11,15 +11,14 @@ public class Game : IValidatableObject
     public double? Price{ get; set; } 
     [EnumDataType(typeof(Genre))]
     public Genre Genre{ get; set; }
-    [NotMapped]
     public Company Company{ get; set; }
-    [NotMapped]
     public List<Store> Stores{ get; set; }
     public DateOnly YearReleased{ get; set; }
     
     [Range(0,10)]
     public int Rating{ get; set; }
     public int Id { get; set; }
+    public ICollection<GameStore> Store { get; set; }
 
     public Game(string name, double? price, Genre genre, DateOnly yearReleased, int rating)
     {

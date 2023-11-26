@@ -32,3 +32,17 @@ WHERE "s"."OpeningHour" = @__hour_0
 SELECT "s"."Id", "s"."Address", "s"."Name", "s"."OpeningHour"
 FROM "Stores" AS "s"
 ```
+
+## Sprint 4
+
+```mermaid
+classDiagram
+  class Game
+  class GameStore
+  class Store
+  class Company
+
+  Game "1" -- "*" GameStore
+  GameStore "*" -- "1" Store
+  Game "*" -- "1" Company
+```
