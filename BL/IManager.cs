@@ -9,11 +9,13 @@ public interface IManager
     public IEnumerable<Game> GetAllGames();
     public IEnumerable<Game> GetGameOfGenre(Genre genre); 
     public Game AddGame(string name, double? price, Genre genre, DateOnly yearReleased, int rating); 
+    public IEnumerable<Game> GetAllGamesWithCompany();
+
     
     public Store GetStore(int id);
     public IEnumerable<Store> GetAllStore();
     public IEnumerable<Store> GetStoresByStoreNameAndStoreOpeningHour(string name, int hour);
     public Store AddStore(string name, string address, int openingHour);
-    
-    
+    public IEnumerable<GameStore> GetAllStoresWithGames ();
+
 }

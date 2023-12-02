@@ -61,8 +61,10 @@ public static class DataSeeder
         gog.Game = new List<GameStore>() { gameStore6 };
         
         
-        gameDbContext.Games.AddRange(new[] { assassinCreed, fifa21, cyberpunk2077, theWitcher3 });
-        gameDbContext.Stores.AddRange(new[] { steam, epicGames, ubisoftStore, gog });
+        // gameDbContext.Games.AddRange(new[] { assassinCreed, fifa21, cyberpunk2077, theWitcher3 });
+        // gameDbContext.Stores.AddRange(new[] { steam, epicGames, ubisoftStore, gog });
+        gameDbContext.GameStores.AddRange(new []{ gameStore1, gameStore2, gameStore3,gameStore4,gameStore5,gameStore6});
+        
 
         gameDbContext.SaveChanges();
         gameDbContext.ChangeTracker.Clear();

@@ -85,6 +85,11 @@ public class InMemoryRepository : IRepository
         GamesList.Add(game);
     }
 
+    public IEnumerable<Game> ReadAllGamesWithCompany()
+    {
+        throw new NotImplementedException();
+    }
+
     public Store ReadStore(int id)
     {
         foreach (Store store in StoresList)
@@ -125,5 +130,10 @@ public class InMemoryRepository : IRepository
         int id = StoresList.Count + 1;
         store.Id = id;
         StoresList.Add(store);
+    }
+
+    public IEnumerable<GameStore> ReadAllStoresWithGames()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -52,6 +52,11 @@ public class Manager : IManager
         return newGame;
     }
 
+    public IEnumerable<Game> GetAllGamesWithCompany()
+    {
+        return _repository.ReadAllGamesWithCompany();
+    }
+
     public Store GetStore(int id)
     {
         return _repository.ReadStore(id);
@@ -85,5 +90,10 @@ public class Manager : IManager
         
         _repository.CreateStore(newStore);
         return newStore;
+    }
+
+    public IEnumerable<GameStore> GetAllStoresWithGames()
+    {
+        return _repository.ReadAllStoresWithGames();
     }
 }

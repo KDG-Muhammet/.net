@@ -37,6 +37,11 @@ public class Repository : IRepository
         _ctx.SaveChanges();
     }
 
+    public IEnumerable<Game> ReadAllGamesWithCompany()
+    {
+        return _ctx.Games.Include(game => game.Company);
+    }
+
     public Store ReadStore(int id)
     {
         return _ctx.Stores.Single(store => store.Id == id);
@@ -78,5 +83,10 @@ public class Repository : IRepository
         _ctx.Stores.Add(store);
         _ctx.SaveChanges();
         
+    }
+
+    public IEnumerable<GameStore> ReadAllStoresWithGames()
+    {
+        return _ctx.GameStores.Include(gs => gs.Store).ThenInclude(store => store.Game);
     }
 }

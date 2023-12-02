@@ -58,7 +58,7 @@ public class GameDbContext : DbContext
             .WithMany(store => store.Game)
             .HasForeignKey("FK_Store")
             .IsRequired();
-        /* AuthorBook */
+        /* GameStore */
         modelBuilder.Entity<GameStore>()
             .HasKey("FK_Game", "FK_Store");
     }
