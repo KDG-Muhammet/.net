@@ -92,8 +92,25 @@ public class Manager : IManager
         return newStore;
     }
 
-    public IEnumerable<GameStore> GetAllStoresWithGames()
+    public IEnumerable<Store> GetAllStoresWithGames()
     {
         return _repository.ReadAllStoresWithGames();
+    }
+
+    public void AddGameToStore(int storeId, int gameId)
+    {
+        
+        GameStore gameStore = new GameStore() { Store = GetStore(storeId), Game = GetGame(gameId), Sales = 100};
+        _repository.CreateGameStore(gameStore); 
+    }
+
+    public void RemoveGameFromStore(int storeId, int gameId)
+    {
+        _repository.DeleteGameStore(gameId, storeId);
+    }
+
+    public IEnumerable<Game> GetGamesOfStore(int storeId)
+    {
+       return _repository.ReadGamesOfStore(storeId);
     }
 }

@@ -85,8 +85,33 @@ public class Repository : IRepository
         
     }
 
-    public IEnumerable<GameStore> ReadAllStoresWithGames()
+    public IEnumerable<Store> ReadAllStoresWithGames()
     {
-        return _ctx.GameStores.Include(gs => gs.Store).ThenInclude(store => store.Game);
+        return _ctx.Stores.Include(gs => gs.Game).ThenInclude(store => store.Game);
+    }
+
+    public void CreateGameStore(GameStore gameStore)
+    {
+        _ctx.GameStores.Add(gameStore);
+        _ctx.SaveChanges();
+    }
+
+    public void DeleteGameStore(int gameId, int storeId)
+    {
+        GameStore gameStore = _ctx.GameStores
+            .SingleOrDefault(gs => gs.Game.Id == gameId && gs.Store.Id == storeId);
+
+        if (gameStore != null)
+        {
+            _ctx.GameStores.Remove(gameStore);
+            _ctx.SaveChanges();
+        }
+    }
+
+    public IEnumerable<Game> ReadGamesOfStore(int storeId)
+    {
+        return _ctx.GameStores
+            .Where(gs => gs.Store.Id == storeId)
+            .Select(gs => gs.Game);
     }
 }

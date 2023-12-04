@@ -132,7 +132,22 @@ public class InMemoryRepository : IRepository
         StoresList.Add(store);
     }
 
-    public IEnumerable<GameStore> ReadAllStoresWithGames()
+    public IEnumerable<Store> ReadAllStoresWithGames()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void CreateGameStore(GameStore gameStore)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DeleteGameStore(int gameId, int storeId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IEnumerable<Game> ReadGamesOfStore(int gameId)
     {
         throw new NotImplementedException();
     }

@@ -30,7 +30,9 @@ public class ConsoleUi
                 "4) Show stores with Game and/or opening hour\n" +
                 "5) Add a Game\n" +
                 "6) Add a Store\n" +
-                "Choice (0-6):\n");
+                "7) Add game to store\n" +
+                "8) Remove game from store\n" +
+                "Choice (0-8):\n");
             string choice = Console.ReadLine();
 
 
@@ -57,6 +59,13 @@ public class ConsoleUi
                 case "6":
                     NewStore();
                     break;
+                case "7":
+                    AddGameToStore();
+                    break;
+                case "8":
+                    RemoveGameFromStore();
+                    break;
+                
             }
         }
     }
@@ -100,9 +109,13 @@ public class ConsoleUi
         //     Console.WriteLine(store.GetInfo());
         // }
         
-        foreach (GameStore store in _manager.GetAllStoresWithGames())
+        foreach (Store store in _manager.GetAllStoresWithGames())
         {
-            Console.WriteLine("{0} Game: {1}", store.Store.GetInfo(), store.Game == null ? "?" : store.Game.Name);
+            Console.WriteLine("{0}", store.GetInfo());
+            foreach (GameStore game in store.Game)
+            {
+                Console.WriteLine("     Game: {0}", game.Game.Name);
+            }
         }
     }
     
@@ -201,5 +214,48 @@ public class ConsoleUi
         
         } while (isValid);
     }
+
+    public void AddGameToStore()
+    {
+        Console.WriteLine("Which store would you like to add a game to?");
+        foreach (Store store in _manager.GetAllStore())
+        {
+            Console.WriteLine("[{0}] {1}", store.Id, store.Name);
+        }
+        Console.WriteLine("Please enter an store ID: ");
+        int storeId = int.Parse(Console.ReadLine() ?? string.Empty);
+        
+        Console.WriteLine("Which game would you like to assign to this store?");
+        foreach (Game game in _manager.GetAllGames())
+        {
+            Console.WriteLine("[{0}] {1}", game.Id, game.Name);
+        }
+        Console.WriteLine("Please enter an game ID: ");
+        int gameId = int.Parse(Console.ReadLine() ?? string.Empty);
+
+        _manager.AddGameToStore(storeId,gameId);
+    }
+
+    public void RemoveGameFromStore()
+    {
+        Console.WriteLine("Which store would you like to remove a game from?");
+        foreach (Store store in _manager.GetAllStore())
+        {
+            Console.WriteLine("[{0}] {1}", store.Id, store.Name);
+        }
+        Console.WriteLine("Please enter an store ID: ");
+        int storeId = int.Parse(Console.ReadLine() ?? string.Empty);
+        
+        Console.WriteLine("Which game would you like to remove from this store?");
+        foreach (Game game in _manager.GetGamesOfStore(storeId))
+        {
+            Console.WriteLine("[{0}] {1}", game.Id, game.Name);
+        }
+        Console.WriteLine("Please enter an game ID: ");
+        int gameId = int.Parse(Console.ReadLine() ?? string.Empty);
+
+        _manager.RemoveGameFromStore(storeId,gameId);
+    }
+    
     
 }
