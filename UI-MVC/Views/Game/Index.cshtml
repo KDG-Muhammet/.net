@@ -1,0 +1,42 @@
+@using StoreManagement.BL.Domain
+@model IEnumerable<StoreManagement.BL.Domain.Game>
+
+@{
+    Layout = "_Layout";
+}
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>All Games</title>
+</head>
+<body>
+<h2>All Games</h2>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Genre</th>
+    <th>YearReleased</th>
+    <th>Rating</th>
+    <th>Details</th>
+  </tr>
+  @foreach (Game game in Model) {
+    <tr>
+      <td>@game.Name</td>
+      <td>$@game.Price</td>
+      <td>@game.Genre</td>
+      <td>@game.YearReleased</td>
+      <td>@game.Rating</td>
+      <td><a asp-controller="Game" asp-action="Details" asp-route-gameId="@game.Id">Details</a></td>
+    </tr>
+  }
+</table>
+
+
+</body>
+</html> 

@@ -1,0 +1,46 @@
+@using StoreManagement.BL.Domain
+@model StoreManagement.BL.Domain.Game
+
+
+@{
+    ViewBag.Title = Model;
+    Layout = "_Layout";
+}
+
+<h2>Game Details: @Model</h2>
+
+<dl>
+    <dt>@nameof(Game.Name)</dt>
+    <dd>@Model.Name</dd>
+    <dt>@nameof(Game.Price)</dt>
+    <dd>@Model.Price </dd>
+    <dt>@nameof(Game.Genre)</dt>
+    <dd>@Model.Genre</dd>
+    <dt>@nameof(Game.YearReleased)</dt>
+    <dd>@Model.YearReleased</dd>
+    <dt>@nameof(Game.Rating)</dt>
+    <dd>@Model.Rating</dd>
+    @*<dt>@nameof(Book.Publisher)</dt>
+    <dd>@Model.Publisher.Name ?? "unknown"</dd>*@
+    
+</dl>
+
+<h2>Stores</h2>
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>OpeningHour</th>
+        <th>Sales</th>
+        <th>Details</th>
+    </tr>
+    @*@foreach (Game game in Model)
+    {<tr>
+         <dd>@game.Stores</dd>
+         <dd>@game.Store</dd>
+         <dd>@game.Store</dd>
+         <td><a asp-controller="Store" asp-action="Details" asp-route-storeId="@game.Id">Details</a></td>
+     </tr>
+    }*@
+</table>

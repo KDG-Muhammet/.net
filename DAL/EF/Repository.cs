@@ -18,6 +18,28 @@ public class Repository : IRepository
     {
         return _ctx.Games.Single(game => game.Id == id);
     }
+    public Game ReadGameWithStores(int gameId)
+    {
+        return _ctx.GameStores
+            .Include(gs => gs.Store)
+            .Where(gs => gs.Game.Id == gameId)
+            .Select(gs => gs.Game) 
+            .FirstOrDefault();;
+        /*
+        _ctx.GameStores
+        .Include(gs => gs.Store)
+        .Single(gs => gs.Game.Id == gameId);
+
+    return _ctx.GameStores
+        .Include(s => s.Store)
+        .ThenInclude(b => b.Id == gameId);
+
+
+    return _context.GameStores
+        .Include(gs => gs.Game)
+        .Include(gs => gs.Store)
+        .FirstOrDefault(gs => gs.Id == gameStoreId);*/
+    }
 
     public IEnumerable<Game> ReadAllGames()
     {
@@ -41,7 +63,7 @@ public class Repository : IRepository
     {
         return _ctx.Games.Include(game => game.Company);
     }
-
+    
     public Store ReadStore(int id)
     {
         return _ctx.Stores.Single(store => store.Id == id);

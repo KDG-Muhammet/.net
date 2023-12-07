@@ -10,7 +10,7 @@ public interface IManager
     public IEnumerable<Game> GetGameOfGenre(Genre genre); 
     public Game AddGame(string name, double? price, Genre genre, DateOnly yearReleased, int rating); 
     public IEnumerable<Game> GetAllGamesWithCompany();
-
+    public Game GetGameWithStores(int id);
     
     public Store GetStore(int id);
     public IEnumerable<Store> GetAllStore();

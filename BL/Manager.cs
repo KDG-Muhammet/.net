@@ -57,6 +57,11 @@ public class Manager : IManager
         return _repository.ReadAllGamesWithCompany();
     }
 
+    public Game GetGameWithStores(int id)
+    {
+        return _repository.ReadGameWithStores(id);
+    }
+
     public Store GetStore(int id)
     {
         return _repository.ReadStore(id);

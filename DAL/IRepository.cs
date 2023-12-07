@@ -10,6 +10,7 @@ public interface IRepository
     public IEnumerable<Game> ReadGameOfGenre(Genre genre); 
     public void CreateGame(Game game);
     public IEnumerable<Game> ReadAllGamesWithCompany();
+    public Game ReadGameWithStores(int id);
 
     
     public Store ReadStore(int id);

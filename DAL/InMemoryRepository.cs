@@ -90,6 +90,11 @@ public class InMemoryRepository : IRepository
         throw new NotImplementedException();
     }
 
+    public Game ReadGameWithStores(int id)
+    {
+        throw new NotImplementedException();
+    }
+
     public Store ReadStore(int id)
     {
         foreach (Store store in StoresList)
