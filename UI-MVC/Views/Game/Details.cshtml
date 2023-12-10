@@ -3,11 +3,11 @@
 
 
 @{
-    ViewBag.Title = Model;
+  
     Layout = "_Layout";
 }
 
-<h2>Game Details: @Model</h2>
+<h2>Game Details</h2>
 
 <dl>
     <dt>@nameof(Game.Name)</dt>
@@ -20,8 +20,6 @@
     <dd>@Model.YearReleased</dd>
     <dt>@nameof(Game.Rating)</dt>
     <dd>@Model.Rating</dd>
-    @*<dt>@nameof(Book.Publisher)</dt>
-    <dd>@Model.Publisher.Name ?? "unknown"</dd>*@
     
 </dl>
 
@@ -35,12 +33,14 @@
         <th>Sales</th>
         <th>Details</th>
     </tr>
-    @*@foreach (Game game in Model)
-    {<tr>
-         <dd>@game.Stores</dd>
-         <dd>@game.Store</dd>
-         <dd>@game.Store</dd>
-         <td><a asp-controller="Store" asp-action="Details" asp-route-storeId="@game.Id">Details</a></td>
-     </tr>
-    }*@
+    @foreach (GameStore store in Model.Store)
+    {
+        <tr>
+            <td>@store.Store.Name</td>
+            <td>@store.Store.Address</td>
+            <td>@store.Store.OpeningHour</td>
+            <td>@store.Sales</td>
+            <td><a asp-controller="Store" asp-action="Details" asp-route-storeId="@store.Store.Id">Details</a></td>
+        </tr>
+    }
 </table>

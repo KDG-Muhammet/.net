@@ -20,11 +20,15 @@ public class Repository : IRepository
     }
     public Game ReadGameWithStores(int gameId)
     {
+        return _ctx.Games
+            .Include(g => g.Store)
+            .ThenInclude(gs => gs.Store)
+            .SingleOrDefault(g => g.Id == gameId);        
         return _ctx.GameStores
             .Include(gs => gs.Store)
             .Where(gs => gs.Game.Id == gameId)
             .Select(gs => gs.Game) 
-            .FirstOrDefault();;
+            .FirstOrDefault();
         /*
         _ctx.GameStores
         .Include(gs => gs.Store)

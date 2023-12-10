@@ -1,0 +1,17 @@
+@using StoreManagement.BL.Domain
+@model StoreManagement.BL.Domain.Store
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "_Layout";
+}
+
+<h2>Store Details</h2>
+<dl>
+    <dt>@nameof(Store.Name)</dt>
+    <dd>@Model.Name</dd>
+    <dt>@nameof(Store.Address)</dt>
+    <dd>@Model.Address </dd>
+    <dt>@nameof(Store.OpeningHour)</dt>
+    <dd>@Model.OpeningHour</dd>
+</dl>

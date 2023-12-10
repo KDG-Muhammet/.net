@@ -1,0 +1,48 @@
+@using StoreManagement.BL.Domain
+@model NewViewGameModel
+
+
+@{
+ 
+    ViewBag.Title = "Add";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Add Game</title>
+</head>
+<body>
+<h2>Add Game</h2>
+
+<form asp-controller="Game" asp-action="Add" method="post">
+    
+    <label asp-for="Name"></label>
+    <input asp-for="Name" placeholder="name" class="form-control" >
+    <span asp-validation-for="Name" class="text-danger" ></span><br>
+
+    <label asp-for="Price"></label>
+    <input asp-for="Price" placeholder="price" class="form-control">
+    <span asp-validation-for="Price" class="text-danger" ></span><br>
+
+    <label asp-for="Genre"></label>
+    <select asp-for="Genre" asp-items="@(new SelectList(Enum.GetValues<Genre>()))" class="form-control"></select>
+    <span asp-validation-for="Genre" class="text-danger" ></span><br>
+
+    <label asp-for="YearReleased"></label>
+    <input asp-for="YearReleased" class="form-control" type="text" value="@((Model != null) ? Model.YearReleased.ToString("dd/MM/yyyy") : "N/A")">
+    <span asp-validation-for="YearReleased" class="text-danger" ></span><br>
+
+    <label asp-for="Rating"></label>
+    <input asp-for="Rating" placeholder="rating" class="form-control">
+    <span asp-validation-for="Rating" class="text-danger" ></span><br>
+
+
+    <button type="submit" class="btn btn-primary">Add Game</button>
+    
+   
+</form>
+</body>
+</html>

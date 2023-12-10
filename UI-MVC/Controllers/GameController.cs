@@ -31,20 +31,26 @@ public class GameController : Controller
     [HttpPost]
     public IActionResult Add(NewViewGameModel game)
     {
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
             return View(game);
         }
-
         Game newGame = _mgr.AddGame(game.Name, game.Price, game.Genre, game.YearReleased, game.Rating);
         return RedirectToAction("Details", new { id = newGame.Id});
-
        
     }
 
     public IActionResult Details(int gameId)
     {
         Game game = _mgr.GetGameWithStores(gameId);
+        if (game.Store != null)
+        {
+            ViewBag.Stores = game.Store;
+        }
+        else
+        {
+            ViewBag.Stores = _mgr.GetStore(game.Id);
+        }
         return View(game);
     }
 }
