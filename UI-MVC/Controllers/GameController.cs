@@ -43,14 +43,6 @@ public class GameController : Controller
     public IActionResult Details(int gameId)
     {
         Game game = _mgr.GetGameWithStores(gameId);
-        if (game.Store != null)
-        {
-            ViewBag.Stores = game.Store;
-        }
-        else
-        {
-            ViewBag.Stores = _mgr.GetStore(game.Id);
-        }
         return View(game);
     }
 }
