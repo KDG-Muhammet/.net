@@ -12,11 +12,11 @@ builder.Services.AddScoped<IManager, Manager>();
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
-
+ 
 using (var scope = app.Services.CreateScope())
 {
     GameDbContext ctx = scope.ServiceProvider.GetRequiredService<GameDbContext>();
-    if (ctx.Database.EnsureCreated())
+    if (ctx.CreateDatabase(dataBase: true ))
     {
         DataSeeder.Seed(ctx);
     }

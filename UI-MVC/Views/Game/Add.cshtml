@@ -32,7 +32,7 @@
     <span asp-validation-for="Genre" class="text-danger" ></span><br>
 
     <label asp-for="YearReleased"></label>
-    <input asp-for="YearReleased" class="form-control" type="text" value="@((Model != null) ? Model.YearReleased.ToString("dd/MM/yyyy") : "N/A")">
+    <input asp-for="YearReleased" class="form-control" type="text" value="@Model?.YearReleased.ToString("dd/MM/yyyy")">
     <span asp-validation-for="YearReleased" class="text-danger" ></span><br>
 
     <label asp-for="Rating"></label>

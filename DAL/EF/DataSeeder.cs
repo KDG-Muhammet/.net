@@ -8,7 +8,7 @@ public static class DataSeeder
     public static void Seed(GameDbContext gameDbContext)
     {
         Game assassinCreed = new Game("Assassin's Creed Valhalla", 59.99, Genre.Action, new DateOnly(2022, 3, 8), 9);
-        Game fifa21 = new Game("FIFA 21", 49.99, Genre.Action, new DateOnly(2021, 9, 10 ), 8);
+        Game fifa21 = new Game("FIFA 21", null, Genre.Action, new DateOnly(2021, 9, 10 ), 8);
         Game cyberpunk2077 = new Game("Cyberpunk 2077", 69.99, Genre.Adventure, new DateOnly(2020, 5, 7), 7);
         Game theWitcher3 = new Game("The Witcher 3: Wild Hunt", 39.99, Genre.Horror, new DateOnly(2023, 7, 13), 9);
         

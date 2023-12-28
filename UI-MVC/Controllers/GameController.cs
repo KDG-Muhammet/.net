@@ -40,9 +40,9 @@ public class GameController : Controller
        
     }
 
-    public IActionResult Details(int gameId)
+    public IActionResult Details(int id)
     {
-        Game game = _mgr.GetGameWithStores(gameId);
+        Game game = _mgr.GetGameWithStores(id);
         return View(game);
     }
 }

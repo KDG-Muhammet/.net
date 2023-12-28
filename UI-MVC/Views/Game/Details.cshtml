@@ -13,7 +13,7 @@
     <dt>@nameof(Game.Name)</dt>
     <dd>@Model.Name</dd>
     <dt>@nameof(Game.Price)</dt>
-    <dd>@Model.Price </dd>
+    <dd>$@(Model.Price.HasValue ? Model.Price.ToString() : "unknown") </dd>
     <dt>@nameof(Game.Genre)</dt>
     <dd>@Model.Genre</dd>
     <dt>@nameof(Game.YearReleased)</dt>

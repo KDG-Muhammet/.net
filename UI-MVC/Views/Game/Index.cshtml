@@ -28,11 +28,11 @@
   @foreach (Game game in Model) {
     <tr>
       <td>@game.Name</td>
-      <td>$@game.Price</td>
+      <td>$@(game.Price.HasValue ? game.Price.ToString() : "unknown")</td>
       <td>@game.Genre</td>
       <td>@game.YearReleased</td>
       <td>@game.Rating</td>
-      <td><a asp-controller="Game" asp-action="Details" asp-route-gameId="@game.Id">Details</a></td>
+      <td><a asp-controller="Game" asp-action="Details" asp-route-id="@game.Id">Details</a></td>
     </tr>
   }
 </table>
