@@ -118,4 +118,9 @@ public class Manager : IManager
     {
        return _repository.ReadGamesOfStore(storeId);
     }
+
+    public IEnumerable<Company> GetAllCompanies()
+    {
+        return _repository.ReadAllCompanies();
+    }
 }

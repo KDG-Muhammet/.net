@@ -156,4 +156,9 @@ public class InMemoryRepository : IRepository
     {
         throw new NotImplementedException();
     }
+
+    public IEnumerable<Company> ReadAllCompanies()
+    {
+        throw new NotImplementedException();
+    }
 }

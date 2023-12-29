@@ -22,5 +22,5 @@ public interface IManager
     void RemoveGameFromStore(int storeId, int gameId);
     IEnumerable<Game> GetGamesOfStore(int storeId);
     
-
+    public IEnumerable<Company> GetAllCompanies();
 }

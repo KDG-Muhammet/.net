@@ -22,4 +22,6 @@ public interface IRepository
     void CreateGameStore(GameStore gameStore);
     void DeleteGameStore(int gameId, int storeId);
     IEnumerable<Game> ReadGamesOfStore(int storeId);
+    
+   public IEnumerable<Company> ReadAllCompanies();
 }
