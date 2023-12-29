@@ -24,4 +24,6 @@ public interface IRepository
     IEnumerable<Game> ReadGamesOfStore(int storeId);
     
    public IEnumerable<Company> ReadAllCompanies();
+   void CreateCompany(Company company);
+   public Company ReadCompany(int id);
 }

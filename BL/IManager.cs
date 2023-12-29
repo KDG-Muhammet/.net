@@ -23,4 +23,6 @@ public interface IManager
     IEnumerable<Game> GetGamesOfStore(int storeId);
     
     public IEnumerable<Company> GetAllCompanies();
+    Company AddCompany(string name, string address, DateOnly yearFounded);
+    Company GetCompanyById(int id);
 }

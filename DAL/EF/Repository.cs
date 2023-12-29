@@ -126,4 +126,15 @@ public class Repository : IRepository
     {
        return _ctx.Companies;
     }
+
+    public void CreateCompany(Company company)
+    {
+        _ctx.Companies.Add(company);
+        _ctx.SaveChanges();
+    }
+
+    public Company ReadCompany(int id)
+    {
+        return _ctx.Companies.Single(company => company.Id == id);
+    }
 }

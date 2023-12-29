@@ -161,4 +161,14 @@ public class InMemoryRepository : IRepository
     {
         throw new NotImplementedException();
     }
+
+    public void CreateCompany(Company company)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Company ReadCompany(int id)
+    {
+        throw new NotImplementedException();
+    }
 }

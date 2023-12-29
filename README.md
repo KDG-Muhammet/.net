@@ -46,3 +46,22 @@ classDiagram
   GameStore "*" -- "1" Store
   Game "*" -- "1" Company
 ```
+
+## Sprint 6
+
+### Nieuwe publisher
+
+#### Request
+
+```http request
+POST https://localhost:7204/api/Companies HTTP/1.1
+Content-Type: application/json
+
+{"Name": "test", "Address": "content", "YearFounded": "2000-01-01"}
+```
+
+#### Response
+
+```http request
+HTTP/1.1 201 Created
+```

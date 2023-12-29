@@ -123,4 +123,17 @@ public class Manager : IManager
     {
         return _repository.ReadAllCompanies();
     }
+
+    public Company AddCompany(string name, string address, DateOnly yearFounded)
+    {
+        Company newCompany = new Company(name,address,yearFounded);
+        _repository.CreateCompany(newCompany); 
+        return newCompany;
+
+    }
+
+    public Company GetCompanyById(int id)
+    {
+        return _repository.ReadCompany(id);
+    }
 }
