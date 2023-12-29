@@ -17,7 +17,6 @@ public class CompaniesController : ControllerBase
         _mgr = manager; 
     }
     
-    // GET: /Books
     [HttpGet]
     public IActionResult GetAll()
     {

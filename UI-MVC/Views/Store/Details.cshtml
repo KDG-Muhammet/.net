@@ -15,3 +15,22 @@
     <dt>@nameof(Store.OpeningHour)</dt>
     <dd>@Model.OpeningHour</dd>
 </dl>
+
+<div id="relatedData"></div>
+<div id="Id" hidden="hidden">@Model.Id</div>
+<!-- Add new record form -->
+<form id="addRecordForm">
+    <!-- Input fields for the junction entity -->
+    <input type="text" id="junctionField1" placeholder="Field 1">
+    <input type="text" id="junctionField2" placeholder="Field 2">
+
+    <!-- Select-box for available records -->
+    <select id="availableRecords"></select>
+
+    <!-- Add button -->
+    <button type="button" id="addButton">Add</button>
+</form>
+
+@section Scripts {
+    <script src="/js/store/details.js" defer></script>
+}
