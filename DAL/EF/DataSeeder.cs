@@ -29,21 +29,7 @@ public static class DataSeeder
         GameStore gameStore4 = new GameStore() { Game = fifa21 , Store = epicGames, Sales = 200.0 };
         GameStore gameStore5 = new GameStore() { Game = cyberpunk2077 , Store = ubisoftStore, Sales = 80.0 };
         GameStore gameStore6 = new GameStore() { Game = theWitcher3 , Store = gog, Sales = 110.0};
-
         
-        // steam.Games.Add(assassinCreed);
-        // steam.Games.Add(fifa21);
-        // steam.Games.Add(cyberpunk2077);
-        // epicGames.Games.Add(fifa21);
-        // ubisoftStore.Games.Add(cyberpunk2077);
-        // gog.Games.Add(theWitcher3);
-        //
-        // assassinCreed.Stores.Add(steam);
-        // cyberpunk2077.Stores.Add(steam);
-        // cyberpunk2077.Stores.Add(ubisoftStore);
-        // theWitcher3.Stores.Add(gog);
-        // fifa21.Stores.Add(steam);
-        // fifa21.Stores.Add(epicGames);
 
         fifa21.Company = ea;
         assassinCreed.Company = ubisoft;
@@ -61,8 +47,6 @@ public static class DataSeeder
         gog.Game = new List<GameStore>() { gameStore6 };
         
         
-        // gameDbContext.Games.AddRange(new[] { assassinCreed, fifa21, cyberpunk2077, theWitcher3 });
-        // gameDbContext.Stores.AddRange(new[] { steam, epicGames, ubisoftStore, gog });
         gameDbContext.GameStores.AddRange(new []{ gameStore1, gameStore2, gameStore3,gameStore4,gameStore5,gameStore6});
         gameDbContext.Companies.AddRange(new []{ ea, sony, cDProjekt,ubisoft,microsoft});
 

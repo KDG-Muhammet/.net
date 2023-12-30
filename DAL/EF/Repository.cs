@@ -1,4 +1,3 @@
-using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using StoreManagement.BL.Domain;
 
@@ -61,22 +60,6 @@ public class Repository : IRepository
 
     public IEnumerable<Store> ReadStoresByStoreNameAndStoreOpeningHour(string name, int? hour)
     {
-        
-        // IQueryable<Store> queryable = _ctx.Stores.AsQueryable();
-        //
-        // if (!string.IsNullOrEmpty(name))
-        // {
-        //    queryable = _ctx.Stores.Where(store => store.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-        // }
-        //
-        // if (hour.HasValue)
-        // {
-        //     queryable = _ctx.Stores.Where(store => store.OpeningHour == hour);
-        // }
-        //
-        // return queryable.ToList();
-
-
         IEnumerable<Store> storesWithMatchingHour = _ctx.Stores.Where(store => hour == 0 || store.OpeningHour == hour); 
         IEnumerable<Store> matchingStores = storesWithMatchingHour
             .Where(store => string.IsNullOrEmpty(name) || store.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
@@ -124,7 +107,7 @@ public class Repository : IRepository
 
     public IEnumerable<Company> ReadAllCompanies()
     {
-       return _ctx.Companies;
+        return _ctx.Companies;
     }
 
     public void CreateCompany(Company company)

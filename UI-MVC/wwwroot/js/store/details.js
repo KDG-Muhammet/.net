@@ -20,8 +20,6 @@ function init(){
 }
 
 async function fetchRelatedData() {
-    // Use fetch to get related data and display it in the #relatedData element
-    // Example: fetch('/api/authors/1/books')
    await fetch('/api/Stores/' + storeId.innerText, {
         method: 'GET',
         headers: {
@@ -38,9 +36,6 @@ async function fetchRelatedData() {
 }
 
 async function fetchAvailableRecords(data) {
-    // Use fetch to get available records and populate the select-box
-    // Example: fetch('/api/books/available')
-    // Create a table element
     const relatedDataContainer = document.getElementById('relatedData');
     console.log(data)
     const table = document.createElement('table');
@@ -93,12 +88,12 @@ async function fetchAvailableRecords(data) {
         row.appendChild(genreCell);
 
         const yearCell = document.createElement('td');
-        yearCell.textContent = game.yearReleased; // Assuming yearFounded is a DateOnly instance
+        yearCell.textContent = game.yearReleased; 
         row.appendChild(yearCell);
         
 
         const ratingCell = document.createElement('td');
-        ratingCell.textContent = game.rating.toString(); // Assuming yearFounded is a DateOnly instance
+        ratingCell.textContent = game.rating.toString(); 
         row.appendChild(ratingCell);
 
         table.appendChild(row);
@@ -110,7 +105,6 @@ async function fetchAvailableRecords(data) {
 function addRecord() {
     const gameSelect = document.getElementById('gameSelect');
     storeId = document.getElementById("Id")
-    console.log("Store ID:", storeId.innerText);
     // Get selected game ID and additional information
     gameId = gameSelect.value;
     console.log("Adding record for Store ID:", storeId.innerText, "and Game ID:", gameId);

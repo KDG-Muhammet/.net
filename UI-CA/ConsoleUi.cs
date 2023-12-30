@@ -73,11 +73,6 @@ public class ConsoleUi
 
     public void ShowGames()
     {
-        // foreach (Game game in _manager.GetAllGames())
-        // {
-        //     Console.WriteLine(game.GetInfo());
-        // }
-        
         foreach (Game game in _manager.GetAllGamesWithCompany())
         {
             Console.WriteLine("{0} [created by {1}]", game.GetInfo(), game.Company == null ? "?" : game.Company.Name);  
@@ -104,11 +99,6 @@ public class ConsoleUi
 
     public void ShowStores()
     {
-        // foreach (var store in _manager.GetAllStore())
-        // {
-        //     Console.WriteLine(store.GetInfo());
-        // }
-        
         foreach (Store store in _manager.GetAllStoresWithGames())
         {
             Console.WriteLine("{0}", store.GetInfo());

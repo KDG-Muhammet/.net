@@ -46,15 +46,15 @@ public class GameDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         
-        /* GameStore <-> Game */
+        /* GameStore <-> Game */ 
         modelBuilder.Entity<GameStore>()
-            .HasOne(gamestore => gamestore.Game)
+            .HasOne(gameStore => gameStore.Game)
             .WithMany(game=> game.Store)
             .HasForeignKey("FK_Game")
             .IsRequired();
         /* GameStore <-> Store */
         modelBuilder.Entity<GameStore>()
-            .HasOne(gamestore => gamestore.Store)
+            .HasOne(gameStore => gameStore.Store)
             .WithMany(store => store.Game)
             .HasForeignKey("FK_Store")
             .IsRequired();

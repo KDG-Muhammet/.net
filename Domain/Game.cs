@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace StoreManagement.BL.Domain;
 
@@ -35,7 +35,7 @@ public class Game : IValidatableObject
         List<ValidationResult> errors = new List<ValidationResult>();
         if (YearReleased > DateOnly.FromDateTime(DateTime.Now))
         {
-            ValidationResult error = new ValidationResult("date mag niet in de toekomst liggen", new string[]{"YearReleased"});
+            ValidationResult error = new ValidationResult("date mag niet in de toekomst liggen", new[]{"YearReleased"});
             errors.Add(error);
         }
         
