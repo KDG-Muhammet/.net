@@ -18,9 +18,6 @@ function init(){
         addRecord();
     });
 }
-document.addEventListener('DOMContentLoaded', function () {
-
-});
 
 async function fetchRelatedData() {
     // Use fetch to get related data and display it in the #relatedData element
@@ -117,6 +114,7 @@ function addRecord() {
     // Get selected game ID and additional information
     gameId = gameSelect.value;
     console.log("Adding record for Store ID:", storeId.innerText, "and Game ID:", gameId);
+    
     // Make a POST request to add a new record to the many-to-many relationship
     fetch('/api/Stores' , {
         method: 'POST',
@@ -131,7 +129,7 @@ function addRecord() {
         .then(data => {
             // Refresh the related data and select box
             fetchRelatedData(data);
-        }).catch(error => alert('Oeps, something went wrong!'));
+        }).catch(error => alert('The selected game is already in the store.'));
 
 }
 

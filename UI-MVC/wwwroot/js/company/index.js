@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function displayData(companies) {
         // Create a table element
         const table = document.createElement('table');
+        table.classList.add('table');
         
         // Create a table header
         const headerRow = document.createElement('tr');
