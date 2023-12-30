@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(function (response) {
                 if (response.ok)
-                    // status-code: 2xx
                     return response.json(); // deserialize data
             })
             .then(function (data) {
@@ -34,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function displayData(companies) {
         // Create a table element
         const table = document.createElement('table');
-        table.classList.add('table');
         
         // Create a table header
         const headerRow = document.createElement('tr');
@@ -65,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
             row.appendChild(addressCell);
 
             const yearCell = document.createElement('td');
-            yearCell.textContent = company.yearFounded.toString(); // Assuming yearFounded is a DateOnly instance
+            yearCell.textContent = company.yearFounded.toString(); 
             row.appendChild(yearCell);
 
             table.appendChild(row);

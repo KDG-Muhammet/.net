@@ -1,6 +1,6 @@
 namespace StoreManagement.UI.Web.MVC.Models.Dto;
 
-public class StoreDto
+public class NewStoreDto
 {
     public int Id { get; set; } 
 }
