@@ -49,7 +49,7 @@ classDiagram
 
 ## Sprint 6
 
-### Nieuwe publisher
+### Nieuwe company
 
 #### Request
 
