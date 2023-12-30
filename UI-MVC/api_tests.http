@@ -9,12 +9,8 @@ GET https://localhost:7204/api/Stores/1 HTTP/1.1
 Content-Type: application/json
 
 #### Send POST request with json body
-#POST https://localhost:7204/api/Stores HTTP/1.1
-#Content-Type: application/json
-#
-#{
-#  "gameStore": {
-#    "Game": { 
-#    }, "Store": 4
-#  }
-#}
+POST https://localhost:7204/api/Stores HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{"gameDto": 1, "storeDto": 3 }

@@ -17,6 +17,7 @@ public class StoresController : ControllerBase
         _mgr = manager; 
     }
     
+    
     [HttpGet("{storeId}")]
     public IActionResult GetGames(int storeId)
     {
@@ -29,9 +30,9 @@ public class StoresController : ControllerBase
     }
     
     [HttpPost]
-    public IActionResult Post(GameStore gameStore)
+    public IActionResult Post(NewGameStoreDto gameStoreDto)
     {
-        _mgr.AddGameToStore(gameStore.Store.Id, gameStore.Game.Id);
-        return CreatedAtAction("GetGames", new {id = gameStore.Store.Id}); 
+        _mgr.AddGameToStore(gameStoreDto.StoreDto ,gameStoreDto.GameDto);
+        return CreatedAtAction("GetGames", new {storeId = gameStoreDto.StoreDto}); 
     }
 }

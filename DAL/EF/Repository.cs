@@ -51,7 +51,7 @@ public class Repository : IRepository
     
     public Store ReadStore(int id)
     {
-        return _ctx.Stores.Single(store => store.Id == id);
+        return _ctx.Stores.SingleOrDefault(store => store.Id == id);
     }
 
     public IEnumerable<Store> ReadAllStore()

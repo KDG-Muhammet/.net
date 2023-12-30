@@ -28,7 +28,7 @@
   @foreach (Game game in Model) {
     <tr>
       <td>@game.Name</td>
-      <td>$@(game.Price.HasValue ? game.Price.ToString() : "unknown")</td>
+      <td>@(game.Price.HasValue ? "$"+game.Price.ToString() : "unknown")</td>
       <td>@game.Genre</td>
       <td>@game.YearReleased</td>
       <td>@game.Rating</td>

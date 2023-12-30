@@ -6,7 +6,7 @@
     Layout = "_Layout";
 }
 
-<h2>Store Details</h2>
+<h1>Store Details</h1>
 <dl>
     <dt>@nameof(Store.Name)</dt>
     <dd>@Model.Name</dd>
@@ -15,20 +15,13 @@
     <dt>@nameof(Store.OpeningHour)</dt>
     <dd>@Model.OpeningHour</dd>
 </dl>
-
-<div id="relatedData"></div>
+<h2>Games</h2>
+<div id="relatedData" class="table"></div>
 <div id="Id" hidden="hidden">@Model.Id</div>
-<!-- Add new record form -->
-<form id="addRecordForm">
-    <!-- Input fields for the junction entity -->
-    <input type="text" id="junctionField1" placeholder="Field 1">
-    <input type="text" id="junctionField2" placeholder="Field 2">
-
-    <!-- Select-box for available records -->
-    <select id="availableRecords"></select>
-
-    <!-- Add button -->
-    <button type="button" id="addButton">Add</button>
+<h3>Add Game</h3>
+<form id="addRecordForm" method="post">
+    <select id="gameSelect"></select>
+    <button type="button" class="btn btn-primary" id="addButton">Add game to store</button>
 </form>
 
 @section Scripts {

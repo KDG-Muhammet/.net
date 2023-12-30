@@ -1,12 +1,15 @@
 window.addEventListener("load", () => init())
 let storeId; 
+let gameId;
 function init(){
     storeId = document.getElementById("Id")
-    // Fetch and display related data
+    console.log("Store ID:", storeId.innerText);
+
     console.log(storeId)
     fetchRelatedData();
 
     // Fetch and populate select-box
+    fetchGames();
 
     // Add event listener for the "Add" button
     const addButton = document.getElementById('addButton');
@@ -33,7 +36,7 @@ async function fetchRelatedData() {
    })
        .then(async (data) => {
            await fetchAvailableRecords(data);
-       })
+       }).catch(error => alert('Oeps, something went wrong!'));
        
 }
 
@@ -85,19 +88,17 @@ async function fetchAvailableRecords(data) {
         row.appendChild(nameCell);
 
         const priceCell = document.createElement('td');
-        priceCell.textContent = game.Price;
+        priceCell.textContent = game.price !== null ? "$" + game.price : "unknown";
         row.appendChild(priceCell);
 
-        const yearCell = document.createElement('td');
-        yearCell.textContent = game.YearReleased; // Assuming yearFounded is a DateOnly instance
-        row.appendChild(yearCell);
-
-
         const genreCell = document.createElement('td');
-        genreCell.textContent = game.genre.toString(); // Assuming yearFounded is a DateOnly instance
-        genreCell.appendChild(document.createTextNode(enumToPosition(game['genre'])))
+        genreCell.appendChild(document.createTextNode(enumToPosition(game.genre)))
         row.appendChild(genreCell);
 
+        const yearCell = document.createElement('td');
+        yearCell.textContent = game.yearReleased; // Assuming yearFounded is a DateOnly instance
+        row.appendChild(yearCell);
+        
 
         const ratingCell = document.createElement('td');
         ratingCell.textContent = game.rating.toString(); // Assuming yearFounded is a DateOnly instance
@@ -110,12 +111,53 @@ async function fetchAvailableRecords(data) {
 }
 
 function addRecord() {
-    // Use fetch to add a new record to the junction entity
-    // Example: fetch('/api/authors/1/books', { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' } })
+    const gameSelect = document.getElementById('gameSelect');
+    storeId = document.getElementById("Id")
+    console.log("Store ID:", storeId.innerText);
+    // Get selected game ID and additional information
+    gameId = gameSelect.value;
+    console.log("Adding record for Store ID:", storeId.innerText, "and Game ID:", gameId);
+    // Make a POST request to add a new record to the many-to-many relationship
+    fetch('/api/Stores' , {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
 
-    // After adding, refresh the related data and available records
+        },
+        body: JSON.stringify({gameDto: gameId, storeDto: storeId.innerText })
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Refresh the related data and select box
+            fetchRelatedData(data);
+        }).catch(error => alert('Oeps, something went wrong!'));
+
+}
+
+function fetchGames() {
+    fetch('/api/Games', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => populateSelectBox(data))
+}
+
+function populateSelectBox(games) {
+    const gameSelect = document.getElementById('gameSelect');
+
+    // Clear existing options
+    gameSelect.innerHTML = '';
+
+    // Populate select box with game options
+    games.forEach(game => {
+        const option = document.createElement('option');
+        option.value = game.id;
+        option.textContent = game.name;
+        gameSelect.appendChild(option);
+    });
     
-    
-    fetchRelatedData();
-    fetchAvailableRecords();
 }
