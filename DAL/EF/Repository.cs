@@ -60,9 +60,9 @@ public class Repository : IRepository
 
     public IEnumerable<Store> ReadStoresByStoreNameAndStoreOpeningHour(string name, int? hour)
     {
-        IEnumerable<Store> storesWithMatchingHour = _ctx.Stores.Where(store => hour == 0 || store.OpeningHour == hour); 
+        IQueryable<Store> storesWithMatchingHour = _ctx.Stores.Where(store => hour == 0 || store.OpeningHour == hour); 
         IEnumerable<Store> matchingStores = storesWithMatchingHour
-            .Where(store => string.IsNullOrEmpty(name) || store.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            .Where(store => string.IsNullOrEmpty(name) || store.Name.Equals(name, StringComparison.OrdinalIgnoreCase)); 
         return matchingStores;
 
     }
