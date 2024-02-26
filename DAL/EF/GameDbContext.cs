@@ -1,11 +1,13 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using StoreManagement.BL.Domain;
 
 namespace StoreManagement.DAL.EF;
 
-public class GameDbContext : DbContext
+public class GameDbContext : IdentityDbContext<IdentityUser>
 {
     
     public DbSet<Game> Games { get; set; }

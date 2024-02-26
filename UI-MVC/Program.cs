@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StoreManagement.BL;
 using StoreManagement.DAL;
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<GameDbContext>(optionsBuilder => optionsBuilder.Us
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IManager, Manager>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddDefaultIdentity<IdentityUser>()
+    .AddEntityFrameworkStores<GameDbContext>();
 var app = builder.Build();
 
  
@@ -21,6 +24,7 @@ using (var scope = app.Services.CreateScope())
         DataSeeder.Seed(ctx);
     }
 }
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -37,6 +41,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
