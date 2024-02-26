@@ -21,6 +21,9 @@ using (var scope = app.Services.CreateScope())
     GameDbContext ctx = scope.ServiceProvider.GetRequiredService<GameDbContext>();
     if (ctx.CreateDatabase(dataBase: true ))
     {
+        UserManager<IdentityUser> userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+        IdentitySeeding(userManager);
         DataSeeder.Seed(ctx);
     }
 }
@@ -47,3 +50,22 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void IdentitySeeding(UserManager<IdentityUser> userManager)
+{
+    var users = new List<IdentityUser>()
+    {
+        new IdentityUser { UserName = "user1@example.com", Email = "user1@example.com" },
+        new IdentityUser { UserName = "user2@example.com", Email = "user2@example.com" },
+        new IdentityUser { UserName = "user3@example.com", Email = "user3@example.com" },
+        new IdentityUser { UserName = "user4@example.com", Email = "user4@example.com" },
+        new IdentityUser { UserName = "user5@example.com", Email = "user5@example.com" },
+    };
+    foreach (var user in users) userManager.CreateAsync(user, "Student1234!");
+    
+    var admin = new IdentityUser("admin@app.com")
+    {
+        Email = "admin@app.com"
+    };
+    userManager.CreateAsync(admin, "Password1!").Wait();
+}

@@ -19,6 +19,7 @@ public class Game : IValidatableObject
     public int Rating{ get; set; }
     public int Id { get; set; }
     public ICollection<GameStore> Store { get; set; }
+    //public User User { get; set; } 
 
     public Game(string name, double? price, Genre genre, DateOnly yearReleased, int rating)
     {
