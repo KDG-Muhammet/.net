@@ -12,6 +12,7 @@ builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IManager, Manager>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDefaultIdentity<IdentityUser>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<GameDbContext>();
 var app = builder.Build();
 
@@ -22,8 +23,9 @@ using (var scope = app.Services.CreateScope())
     if (ctx.CreateDatabase(dataBase: true ))
     {
         UserManager<IdentityUser> userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+        RoleManager<IdentityRole> roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-        IdentitySeeding(userManager);
+        IdentitySeeding(userManager, roleManager);
         DataSeeder.Seed(ctx);
     }
 }
@@ -51,7 +53,7 @@ app.MapControllerRoute(
 
 app.Run();
 
-void IdentitySeeding(UserManager<IdentityUser> userManager)
+void IdentitySeeding(UserManager<IdentityUser> userManager,  RoleManager<IdentityRole> roleManager)
 {
     var users = new List<IdentityUser>()
     {
@@ -67,5 +69,12 @@ void IdentitySeeding(UserManager<IdentityUser> userManager)
     {
         Email = "admin@app.com"
     };
-    userManager.CreateAsync(admin, "Password1!").Wait();
+    userManager.CreateAsync(admin, "Password1!");
+    
+    //roles
+     roleManager.CreateAsync(new IdentityRole("Admin"));
+     roleManager.CreateAsync(new IdentityRole("User"));
+     
+     userManager.AddToRoleAsync(admin, "Admin");
+     foreach (var identityUser in users) userManager.AddToRoleAsync(identityUser, "User"); 
 }
