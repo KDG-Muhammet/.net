@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StoreManagement.BL;
 using StoreManagement.BL.Domain;
@@ -21,6 +22,7 @@ public class GameController : Controller
         return View(games);
     }
     
+    [Authorize]
     [HttpGet]
     public IActionResult Add()
     {
@@ -28,6 +30,7 @@ public class GameController : Controller
        
     }
     
+    [Authorize]
     [HttpPost]
     public IActionResult Add(NewViewGameModel game)
     {

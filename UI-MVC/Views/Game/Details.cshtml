@@ -23,6 +23,15 @@
     
 </dl>
 
+@if (User.Identity?.IsAuthenticated?? false)
+{
+    <button type="button" class="btn btn-primary" id="updateButton">Update</button>
+}
+else
+{
+    <span>Maintained by @User.Identity.Name</span>
+}
+
 <h1>Stores</h1>
 
 <table class="table">

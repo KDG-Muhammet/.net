@@ -22,7 +22,8 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Game" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Game" asp-action="Add">Add Game</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {<a class="nav-link text-dark" asp-area="" asp-controller="Game" asp-action="Add">Add Game</a>}
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="Index">Companies</a>

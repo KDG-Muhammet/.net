@@ -18,11 +18,19 @@
 <h2>Games</h2>
 <div id="relatedData" class="table"></div>
 <div id="Id" hidden="hidden">@Model.Id</div>
-<h3>Add Game</h3>
-<form id="addRecordForm" method="post">
-    <select id="gameSelect"></select>
-    <button type="button" class="btn btn-primary" id="addButton">Add game to store</button>
-</form>
+
+@if (User.Identity?.IsAuthenticated?? false)
+{
+    <h3>Add Game</h3>
+    <form id="addRecordForm" method="post">
+        <select id="gameSelect"></select>
+        <button type="button" class="btn btn-primary" id="addButton">Add game to store</button>
+    </form>
+}
+else
+{
+    <span>Maintained by @User.Identity.Name</span>
+}
 
 @section Scripts {
     <script src="/js/store/details.js" defer></script>
