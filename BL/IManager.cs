@@ -11,6 +11,7 @@ public interface IManager
     public Game AddGame(string name, double? price, Genre genre, DateOnly yearReleased, int rating); 
     public IEnumerable<Game> GetAllGamesWithCompany();
     public Game GetGameWithStores(int id);
+    public void UpdateRating(Game game);
     
     public Store GetStore(int id);
     public IEnumerable<Store> GetAllStore();
@@ -25,4 +26,5 @@ public interface IManager
     public IEnumerable<Company> GetAllCompanies();
     Company AddCompany(string name, string address, DateOnly yearFounded);
     Company GetCompanyById(int id);
+   
 }

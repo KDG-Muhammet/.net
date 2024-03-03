@@ -22,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
         })
             .then(response =>  response.json())
             .then(data => {
-                // Update de weergave van de rating op de pagina
-                console.log(data);
                 updateRating.textContent = newRating;
             })
             .catch(error => {

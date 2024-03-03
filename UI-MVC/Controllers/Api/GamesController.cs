@@ -43,7 +43,7 @@ public class GamesController : ControllerBase
             return NotFound();
 
         game.Rating = updateGameDto.Rating;
-        //_mgr.UpdateRating(game);
+        _mgr.UpdateRating(game);
             
         return NoContent();
     }

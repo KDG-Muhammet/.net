@@ -27,6 +27,13 @@ public class Repository : IRepository
             .SingleOrDefault(g => g.Id == gameId);        
     }
 
+    public void UpdateRating(Game game)
+    {
+        _ctx.Games.Update(game);
+        _ctx.SaveChanges();
+    }
+
+
     public IEnumerable<Game> ReadAllGames()
     {
         return _ctx.Games;

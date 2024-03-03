@@ -16,7 +16,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<GameDbContext>();
 
-// web api: fix redirect 302 to 401/403
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Events.OnRedirectToLogin += redirectContext =>

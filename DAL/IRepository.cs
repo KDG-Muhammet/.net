@@ -11,7 +11,7 @@ public interface IRepository
     public void CreateGame(Game game);
     public IEnumerable<Game> ReadAllGamesWithCompany();
     public Game ReadGameWithStores(int id);
-
+    public void UpdateRating(Game game);
     
     public Store ReadStore(int id);
     public IEnumerable<Store> ReadAllStore();
@@ -26,4 +26,5 @@ public interface IRepository
    public IEnumerable<Company> ReadAllCompanies();
    void CreateCompany(Company company);
    public Company ReadCompany(int id);
+   
 }

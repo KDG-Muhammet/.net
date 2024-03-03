@@ -62,6 +62,13 @@ public class Manager : IManager
         return _repository.ReadGameWithStores(id);
     }
 
+    public void UpdateRating(Game game)
+    {
+       // Game updatedGame = GetGame(game.Id);
+       // game.Rating = updatedGame.Rating;
+        _repository.UpdateRating(game);
+    }
+
     public Store GetStore(int id)
     {
         return _repository.ReadStore(id);
@@ -81,17 +88,17 @@ public class Manager : IManager
     {
         Store newStore = new Store(name, address, openingHour);
         List<ValidationResult> errors = new List<ValidationResult>();
-       bool isValid = Validator.TryValidateObject(newStore, new ValidationContext(newStore), errors, validateAllProperties: true);
+        bool isValid = Validator.TryValidateObject(newStore, new ValidationContext(newStore), errors, validateAllProperties: true);
 
-       if (!isValid)
-       {
-           StringBuilder sb = new StringBuilder();
-           foreach (ValidationResult validationResult in errors)
-           {
-               sb.Append(" " + validationResult.ErrorMessage);
-           }
-           throw new ValidationException(sb.ToString());
-       }
+        if (!isValid)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (ValidationResult validationResult in errors)
+            {
+                sb.Append(" " + validationResult.ErrorMessage);
+            }
+            throw new ValidationException(sb.ToString());
+        }
         
         _repository.CreateStore(newStore);
         return newStore;
@@ -116,7 +123,7 @@ public class Manager : IManager
 
     public IEnumerable<Game> GetGamesOfStore(int storeId)
     {
-       return _repository.ReadGamesOfStore(storeId);
+        return _repository.ReadGamesOfStore(storeId);
     }
 
     public IEnumerable<Company> GetAllCompanies()
