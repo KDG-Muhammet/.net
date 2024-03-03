@@ -1,4 +1,5 @@
-﻿using StoreManagement.BL.Domain;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using StoreManagement.BL.Domain;
 
 namespace StoreManagement.DAL.EF;
 
@@ -23,14 +24,20 @@ public static class DataSeeder
         Company ubisoft = new Company("Ubisoft", "Saint-Mandé, France", new DateOnly(1986, 3, 28));
         Company microsoft = new Company("Microsoft", "Redmond, Washington, U.S.", new DateOnly(1975, 4, 4));
 
+        
+        assassinCreed.User = gameDbContext.Users.SingleOrDefault(u => u.Email == "assassinCreed@example.com");
+        fifa21.User = gameDbContext.Users.SingleOrDefault(u => u.Email == "fifa21@example.com");
+        cyberpunk2077.User = gameDbContext.Users.SingleOrDefault(u => u.Email == "cyberpunk2077@example.com");
+        theWitcher3.User = gameDbContext.Users.SingleOrDefault(u => u.Email == "theWitcher3@example.com");
+        
         GameStore gameStore1 = new GameStore() { Game = fifa21 , Store = steam, Sales = 100.0 };
         GameStore gameStore2 = new GameStore() { Game = assassinCreed , Store = steam, Sales = 150.0 };
         GameStore gameStore3 = new GameStore() { Game = cyberpunk2077 , Store = steam, Sales = 120.0 };
         GameStore gameStore4 = new GameStore() { Game = fifa21 , Store = epicGames, Sales = 200.0 };
         GameStore gameStore5 = new GameStore() { Game = cyberpunk2077 , Store = ubisoftStore, Sales = 80.0 };
         GameStore gameStore6 = new GameStore() { Game = theWitcher3 , Store = gog, Sales = 110.0};
-        
 
+        
         fifa21.Company = ea;
         assassinCreed.Company = ubisoft;
         cyberpunk2077.Company = cDProjekt;

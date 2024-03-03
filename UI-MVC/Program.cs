@@ -14,6 +14,17 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<GameDbContext>();
+
+// web api: fix redirect 302 to 401/403
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Events.OnRedirectToLogin += redirectContext =>
+    {
+        if (redirectContext.Request.Path.StartsWithSegments("/api"))
+            redirectContext.Response.StatusCode = 401; // UnAuthorized
+        return Task.CompletedTask;
+    };
+});
 var app = builder.Build();
 
  
@@ -57,11 +68,10 @@ void IdentitySeeding(UserManager<IdentityUser> userManager,  RoleManager<Identit
 {
     var users = new List<IdentityUser>()
     {
-        new IdentityUser { UserName = "user1@example.com", Email = "user1@example.com" },
-        new IdentityUser { UserName = "user2@example.com", Email = "user2@example.com" },
-        new IdentityUser { UserName = "user3@example.com", Email = "user3@example.com" },
-        new IdentityUser { UserName = "user4@example.com", Email = "user4@example.com" },
-        new IdentityUser { UserName = "user5@example.com", Email = "user5@example.com" },
+        new IdentityUser { UserName = "assassinCreed@example.com", Email = "assassinCreed@example.com" },
+        new IdentityUser { UserName = "fifa21@example.com", Email = "fifa21@example.com" },
+        new IdentityUser { UserName = "cyberpunk2077@example.com", Email = "cyberpunk2077@example.com" },
+        new IdentityUser { UserName = "theWitcher3@example.com", Email = "theWitcher3@example.com" },
     };
     foreach (var user in users) userManager.CreateAsync(user, "Student1234!");
     

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreManagement.BL;
 using StoreManagement.BL.Domain;
 using StoreManagement.UI.Web.MVC.Models.Dto;
@@ -28,7 +29,7 @@ public class StoresController : ControllerBase
 
         return Ok(storeGames);
     }
-    
+    [Authorize]
     [HttpPost]
     public IActionResult Post(NewGameStoreDto gameStoreDto)
     {

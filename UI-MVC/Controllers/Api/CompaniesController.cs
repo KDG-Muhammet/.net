@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using StoreManagement.BL;
@@ -42,6 +43,7 @@ public class CompaniesController : ControllerBase
 
     
     [HttpPost] 
+    [Authorize]
     public IActionResult Post(NewCompanyDto newCompanyDto)
     {
         Company company = _mgr.AddCompany(newCompanyDto.Name, newCompanyDto.Address, newCompanyDto.YearFounded);

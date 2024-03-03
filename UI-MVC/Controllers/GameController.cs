@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StoreManagement.BL;
 using StoreManagement.BL.Domain;
@@ -10,10 +11,13 @@ public class GameController : Controller
 {
     
     private readonly IManager _mgr;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public GameController(IManager manager)
+
+    public GameController(IManager manager, UserManager<IdentityUser> userManager)
     {
         _mgr = manager; 
+        _userManager = userManager;
     }
 
     public IActionResult Index()
@@ -39,6 +43,8 @@ public class GameController : Controller
             return View(game);
         }
         Game newGame = _mgr.AddGame(game.Name, game.Price, game.Genre, game.YearReleased, game.Rating);
+        var currentUser = _userManager.GetUserAsync(User).Result;
+        newGame.User = currentUser;
         return RedirectToAction("Details", new { id = newGame.Id});
        
     }
