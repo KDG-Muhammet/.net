@@ -15,7 +15,9 @@ public class Repository : IRepository
 
     public Game ReadGame(int id)
     {
-        return _ctx.Games.Single(game => game.Id == id);
+        return _ctx.Games
+            .Include(u => u.User)
+            .SingleOrDefault(game => game.Id == id);
     }
     public Game ReadGameWithStores(int gameId)
     {

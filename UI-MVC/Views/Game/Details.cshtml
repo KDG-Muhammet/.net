@@ -19,8 +19,9 @@
     <dt>@nameof(Game.YearReleased)</dt>
     <dd>@Model.YearReleased</dd>
     <dt>@nameof(Game.Rating)</dt>
-    <dd>@Model.Rating</dd>
-    
+    <dd id="updateRating" >@Model.Rating</dd>
+    <div id="Id" hidden="hidden">@Model.Id</div>
+     
 </dl>
 
 @if (User.Identity?.IsAuthenticated?? false)
@@ -31,7 +32,7 @@
 }
 else
 {
-    <span>Maintained by @Model.User </span>
+    <span>Maintained by @Model.User</span>
 }
 
 <h1>Stores</h1>
@@ -55,3 +56,7 @@ else
         </tr>
     }
 </table>
+
+@section Scripts {
+    <script src="/js/game/details.js" defer></script>
+}

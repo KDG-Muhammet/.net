@@ -5,9 +5,10 @@ using StoreManagement.DAL;
 using StoreManagement.DAL.EF;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("AppDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDbContextConnection' not found.");
 
 // Add services to the container.
-builder.Services.AddDbContext<GameDbContext>(optionsBuilder => optionsBuilder.UseSqlite("Data Source=AppDatabase.sqlite"));
+builder.Services.AddDbContext<GameDbContext>(optionsBuilder => optionsBuilder.UseSqlite(connectionString));
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IManager, Manager>();
 builder.Services.AddControllersWithViews();
