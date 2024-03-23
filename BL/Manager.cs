@@ -64,8 +64,8 @@ public class Manager : IManager
 
     public void UpdateRating(Game game)
     {
-       // Game updatedGame = GetGame(game.Id);
-       // game.Rating = updatedGame.Rating;
+        Game updatedGame = GetGame(game.Id);
+        game.Rating = updatedGame.Rating;
         _repository.UpdateRating(game);
     }
 

@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI-MVC", "UI-MVC\UI-MVC.csproj", "{81C77D45-82FB-4E8B-8FC6-090531F3AB21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{3F18697F-4CB6-4082-84F4-2D0089C057CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{81C77D45-82FB-4E8B-8FC6-090531F3AB21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81C77D45-82FB-4E8B-8FC6-090531F3AB21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81C77D45-82FB-4E8B-8FC6-090531F3AB21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F18697F-4CB6-4082-84F4-2D0089C057CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F18697F-4CB6-4082-84F4-2D0089C057CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F18697F-4CB6-4082-84F4-2D0089C057CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F18697F-4CB6-4082-84F4-2D0089C057CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

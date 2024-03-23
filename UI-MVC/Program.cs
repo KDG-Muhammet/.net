@@ -89,3 +89,4 @@ void IdentitySeeding(UserManager<IdentityUser> userManager,  RoleManager<Identit
      userManager.AddToRoleAsync(admin, "Admin");
      foreach (var identityUser in users) userManager.AddToRoleAsync(identityUser, "User"); 
 }
+public partial class Program{}
