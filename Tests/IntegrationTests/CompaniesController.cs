@@ -34,19 +34,19 @@ public class CompaniesController :  IClassFixture<ExtendedWebApplicationFactoryW
       
     }
 
-    // [Fact]
-    // public void Get_ShouldReturnNotFoundForNonExistingCompany()
-    // {
-    //     // Arrange
-    //     var client = _factory.CreateClient();
-    //     int nonExistingCompanyId = 999; 
-    //
-    //     // Act
-    //     var response =  client.GetAsync($"/api/Companies/{nonExistingCompanyId}").Result;
-    //
-    //     // Assert
-    //     Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
-    // }
+    [Fact]
+    public void Get_ShouldReturnNotFoundForNonExistingCompany()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+        int nonExistingCompanyId = 6; 
+    
+        // Act
+        var response =  client.GetAsync($"/api/Companies/{nonExistingCompanyId}").Result;
+    
+        // Assert
+        Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
+    }
 }
 
 

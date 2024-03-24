@@ -21,7 +21,7 @@ public class GameControllerTests :  IClassFixture<ExtendedWebApplicationFactoryW
     }
     
     [Fact]
-    public void Add_ShouldReturnRedirectToAction_WhenModelStateIsValid()
+    public void AddGame_ShouldReturnRedirectToAction_WhenModelStateIsValid()
     {
         // Arrange
         var client = _factory

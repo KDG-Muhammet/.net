@@ -71,19 +71,6 @@ public class ManagerTests
     [Fact]
     public void GetAllGames_ShouldReturnGames()
     {
-        // // Arrange
-        // var repositoryMock = new Mock<IRepository>();
-        // var manager = new Manager(repositoryMock.Object);
-        // repositoryMock.Setup(r => r.ReadAllGames())
-        //     .Verifiable(Times.Never);
-        //
-        // // Act
-        // var store = manager.GetAllGames();
-        //
-        // // Assert
-        // Assert.NotNull(store);
-        // repositoryMock.VerifyAll();
-        
         var expectedGames = new List<Game>
         {
             new Game( "Game 1",5,Genre.Action,new DateOnly(2023, 1, 1),10),

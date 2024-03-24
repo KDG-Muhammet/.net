@@ -53,10 +53,11 @@ public class GameControllerTests
         managerMock.Verify(mgr => mgr.AddGame(newGameModel.Name, newGameModel.Price, newGameModel.Genre, newGameModel.YearReleased, newGameModel.Rating), Times.Once);
         var redirectResult = Assert.IsType<RedirectToActionResult>(result);
         Assert.Equal("Details", redirectResult.ControllerName?? nameof(GameController.Details));
+        Assert.Null(redirectResult.ControllerName);
     }
     
     [Fact]
-    public void Add_ShouldCallManager_AddGame_Once_WithValidData()
+    public void AddGame_ShouldRedirectToDetails_WithValidData()
     {
         // Arrange
         var managerMock = new Mock<IManager>();

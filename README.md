@@ -122,12 +122,12 @@ dotnet test
 
 #### authorization requirements
 ```
-GameControllerTests
+Tests.IntegrationTests.GameControllerTests
 ```
 
 #### verification
 ```
-ManagerTests
+Tests.UnitTests.ManagerTests
 ```
 #### Links
 
