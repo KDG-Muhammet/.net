@@ -112,3 +112,26 @@ Cookie: .AspNetCore.Identity.Application=CfDJ8Byf-7BLl5BHsW0kdgm_8z6HceNxx0QTSTy
 ```http request
 HTTP/1.1 201 Created
 ```
+
+## Sprint 8
+
+```shell
+dotnet test
+```
+![Code coverage](jouw_afbeelding_met_coverage.png)
+
+#### authorization requirements
+```
+GameControllerTests
+```
+
+#### verification
+```
+ManagerTests
+```
+#### Links
+
+Tests:
+[link](https://www.example.com/my%20great%20page)
+
+code coverage rapport:
