@@ -31,4 +31,8 @@
 
 
 
+    <ItemGroup>
+      <Folder Include="TestResults\" />
+    </ItemGroup>
+
 </Project>
