@@ -73,7 +73,7 @@ public class ManagerTests : IClassFixture<ExtendedWebApplicationFactoryWithMockA
     }
 
     [Fact]
-    public void AddGame_InvalidInput_ThrowsValidationException()
+    public void AddGame_WithInvalidInput_ShouldThrowValidationException()
     {
         // Arrange
         using (var scope = _factory.Services.CreateScope())
@@ -92,13 +92,10 @@ public class ManagerTests : IClassFixture<ExtendedWebApplicationFactoryWithMockA
                 mgr.AddGame(name, price, genre, yearReleased, rating);
             };
             
-            
             //Assert
             Assert.Throws<ValidationException>(newGame);
             
-            
         }
-        
     }
     
     [Fact]
