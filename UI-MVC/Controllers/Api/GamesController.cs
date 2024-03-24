@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StoreManagement.BL;
 using StoreManagement.BL.Domain;
@@ -12,10 +13,12 @@ namespace StoreManagement.UI.Web.MVC.Controllers.Api;
 public class GamesController : ControllerBase
 {
     private readonly IManager _mgr;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public GamesController(IManager manager)
+    public GamesController(IManager manager,UserManager<IdentityUser> userManager)
     {
         _mgr = manager;
+        _userManager = userManager;
     }
 
     [HttpGet]
@@ -32,16 +35,16 @@ public class GamesController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult UpdateGame(int id ,UpdateGameDto updateGameDto)
     {
-        // bool isAuthorized = game.User?.Id == User.Claims.SingleOrDefault( c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-        // if (!isAuthorized)
-        // {
-        //     return Unauthorized();
-        // }
         Game game = _mgr.GetGame(id);
-
         if (game == null)
+        {
             return NotFound();
-
+        }
+        bool isAuthorized = _userManager.GetUserId(User) == game.User?.Id;
+        if (!isAuthorized)
+        {
+            return Unauthorized();
+        }
         game.Rating = updateGameDto.Rating;
         _mgr.UpdateRating(game);
             
