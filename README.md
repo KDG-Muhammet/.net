@@ -118,7 +118,7 @@ HTTP/1.1 201 Created
 ```shell
 dotnet test
 ```
-![Code coverage](jouw_afbeelding_met_coverage.png)
+![Code coverage](Tests/code_coverage.png)
 
 #### authorization requirements
 ```
@@ -132,6 +132,7 @@ ManagerTests
 #### Links
 
 Tests:
-[link](https://www.example.com/my%20great%20page)
+[link](https://gitlab.com/kdg-ti/programmeren-2---.net/23-24/inf202/projecten/muhammet.murat/-/pipelines/1225660217/test_report?job_name=tests)
 
 code coverage rapport:
+[link](https://gitlab.com/kdg-ti/programmeren-2---.net/23-24/inf202/projecten/muhammet.murat/-/jobs/6465325411/artifacts/browse/coveragereport/)
